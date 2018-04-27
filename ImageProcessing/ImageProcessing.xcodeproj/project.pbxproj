@@ -58,24 +58,48 @@
 		FE437D18209333D900C2A305 /* ImageProcessing */ = {
 			isa = PBXGroup;
 			children = (
-				FE437D1D209333D900C2A305 /* Main.storyboard */,
-				FE437D2C2093378F00C2A305 /* ImageProcessingViewController.swift */,
-				FE437D302093573200C2A305 /* AlertOptions.swift */,
-				FE437D2E2093540B00C2A305 /* UIViewController+Extension.swift */,
-				FE437D2B2093348900C2A305 /* Supporting Files */,
+				FE437D33209366CA00C2A305 /* App */,
+				FE437D342093670800C2A305 /* Controllers */,
+				FE437D322093669800C2A305 /* Extensions */,
+				FE437D2B2093348900C2A305 /* Resources */,
 			);
 			path = ImageProcessing;
 			sourceTree = "<group>";
 		};
-		FE437D2B2093348900C2A305 /* Supporting Files */ = {
+		FE437D2B2093348900C2A305 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				FE437D19209333D900C2A305 /* AppDelegate.swift */,
+				FE437D1D209333D900C2A305 /* Main.storyboard */,
 				FE437D20209333DB00C2A305 /* Assets.xcassets */,
 				FE437D22209333DB00C2A305 /* LaunchScreen.storyboard */,
 				FE437D25209333DB00C2A305 /* Info.plist */,
 			);
-			path = "Supporting Files";
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		FE437D322093669800C2A305 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				FE437D2E2093540B00C2A305 /* UIViewController+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		FE437D33209366CA00C2A305 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				FE437D19209333D900C2A305 /* AppDelegate.swift */,
+				FE437D302093573200C2A305 /* AlertOptions.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		FE437D342093670800C2A305 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				FE437D2C2093378F00C2A305 /* ImageProcessingViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
