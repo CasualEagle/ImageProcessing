@@ -12,6 +12,8 @@
 		FE437D21209333DB00C2A305 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE437D20209333DB00C2A305 /* Assets.xcassets */; };
 		FE437D24209333DB00C2A305 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE437D22209333DB00C2A305 /* LaunchScreen.storyboard */; };
 		FE437D2D2093378F00C2A305 /* ImageProcessingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE437D2C2093378F00C2A305 /* ImageProcessingViewController.swift */; };
+		FE437D2F2093540B00C2A305 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE437D2E2093540B00C2A305 /* UIViewController+Extension.swift */; };
+		FE437D312093573200C2A305 /* AlertOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE437D302093573200C2A305 /* AlertOptions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		FE437D23209333DB00C2A305 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FE437D25209333DB00C2A305 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FE437D2C2093378F00C2A305 /* ImageProcessingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProcessingViewController.swift; sourceTree = "<group>"; };
+		FE437D2E2093540B00C2A305 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		FE437D302093573200C2A305 /* AlertOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertOptions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +60,8 @@
 			children = (
 				FE437D1D209333D900C2A305 /* Main.storyboard */,
 				FE437D2C2093378F00C2A305 /* ImageProcessingViewController.swift */,
+				FE437D302093573200C2A305 /* AlertOptions.swift */,
+				FE437D2E2093540B00C2A305 /* UIViewController+Extension.swift */,
 				FE437D2B2093348900C2A305 /* Supporting Files */,
 			);
 			path = ImageProcessing;
@@ -143,6 +149,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE437D2F2093540B00C2A305 /* UIViewController+Extension.swift in Sources */,
+				FE437D312093573200C2A305 /* AlertOptions.swift in Sources */,
 				FE437D1A209333D900C2A305 /* AppDelegate.swift in Sources */,
 				FE437D2D2093378F00C2A305 /* ImageProcessingViewController.swift in Sources */,
 			);

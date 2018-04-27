@@ -26,6 +26,13 @@
                                     <constraint firstAttribute="width" secondItem="AOz-9w-Wzd" secondAttribute="height" multiplier="1:1" id="t86-EE-QTI"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WY5-D5-fea">
+                                <rect key="frame" x="42.5" y="97" width="99" height="30"/>
+                                <state key="normal" title="Choose Image"/>
+                                <connections>
+                                    <action selector="chooseImage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jfY-zE-N2Z"/>
+                                </connections>
+                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kLE-IN-O7S">
                                 <rect key="frame" x="179.5" y="28" width="187.5" height="169.5"/>
                                 <subviews>
@@ -55,7 +62,9 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="WY5-D5-fea" firstAttribute="centerY" secondItem="AOz-9w-Wzd" secondAttribute="centerY" id="I1J-G8-eUp"/>
                             <constraint firstItem="AOz-9w-Wzd" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="KZb-K0-MXp"/>
+                            <constraint firstItem="WY5-D5-fea" firstAttribute="centerX" secondItem="AOz-9w-Wzd" secondAttribute="centerX" id="Ld6-EU-jMy"/>
                             <constraint firstItem="AOz-9w-Wzd" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="8" id="PAq-RZ-Hxj"/>
                             <constraint firstItem="kLE-IN-O7S" firstAttribute="leading" secondItem="AOz-9w-Wzd" secondAttribute="trailing" constant="2" id="V6v-nt-Eaz"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="kLE-IN-O7S" secondAttribute="trailing" constant="8" id="X7s-ST-9AC"/>
@@ -65,6 +74,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="imageView" destination="AOz-9w-Wzd" id="uOb-8D-dLX"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

@@ -12,10 +12,25 @@ class ImageProcessingViewController: UIViewController {
 
     @IBOutlet private weak var imageView: UIImageView!
 
+    @IBAction private func chooseImage(_ sender: UIButton) {
+        presentActionSheet(title: nil,
+                           message: "Choose image from:",
+                           options: .library, .camera, .cancel)
+        { option in
+
+            switch option {
+            case .camera:
+                print("1")
+            case .library:
+                print("2")
+            case .cancel:
+                print("3")
+            }
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
     }
-
-
 }
