@@ -8,20 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		FE437D1A209333D900C2A305 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE437D19209333D900C2A305 /* AppDelegate.swift */; };
-		FE437D1C209333D900C2A305 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE437D1B209333D900C2A305 /* ViewController.swift */; };
 		FE437D1F209333D900C2A305 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE437D1D209333D900C2A305 /* Main.storyboard */; };
 		FE437D21209333DB00C2A305 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE437D20209333DB00C2A305 /* Assets.xcassets */; };
 		FE437D24209333DB00C2A305 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE437D22209333DB00C2A305 /* LaunchScreen.storyboard */; };
+		FE437D2D2093378F00C2A305 /* ImageProcessingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE437D2C2093378F00C2A305 /* ImageProcessingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		FE437D16209333D900C2A305 /* ImageProcessing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageProcessing.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE437D19209333D900C2A305 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		FE437D1B209333D900C2A305 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		FE437D1E209333D900C2A305 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FE437D20209333DB00C2A305 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FE437D23209333DB00C2A305 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FE437D25209333DB00C2A305 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FE437D2C2093378F00C2A305 /* ImageProcessingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProcessingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +54,22 @@
 		FE437D18209333D900C2A305 /* ImageProcessing */ = {
 			isa = PBXGroup;
 			children = (
-				FE437D19209333D900C2A305 /* AppDelegate.swift */,
-				FE437D1B209333D900C2A305 /* ViewController.swift */,
 				FE437D1D209333D900C2A305 /* Main.storyboard */,
+				FE437D2C2093378F00C2A305 /* ImageProcessingViewController.swift */,
+				FE437D2B2093348900C2A305 /* Supporting Files */,
+			);
+			path = ImageProcessing;
+			sourceTree = "<group>";
+		};
+		FE437D2B2093348900C2A305 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FE437D19209333D900C2A305 /* AppDelegate.swift */,
 				FE437D20209333DB00C2A305 /* Assets.xcassets */,
 				FE437D22209333DB00C2A305 /* LaunchScreen.storyboard */,
 				FE437D25209333DB00C2A305 /* Info.plist */,
 			);
-			path = ImageProcessing;
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -135,8 +143,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FE437D1C209333D900C2A305 /* ViewController.swift in Sources */,
 				FE437D1A209333D900C2A305 /* AppDelegate.swift in Sources */,
+				FE437D2D2093378F00C2A305 /* ImageProcessingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,7 +290,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F8V3W9KHRA;
-				INFOPLIST_FILE = ImageProcessing/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/ImageProcessing/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -301,7 +309,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F8V3W9KHRA;
-				INFOPLIST_FILE = ImageProcessing/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/ImageProcessing/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

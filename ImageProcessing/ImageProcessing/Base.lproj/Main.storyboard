@@ -1,24 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" systemVersion="17A277" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Image Processing View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ImageProcessingViewController" customModule="ImageProcessing" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AOz-9w-Wzd">
+                                <rect key="frame" x="8" y="28" width="169.5" height="169.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="AOz-9w-Wzd" secondAttribute="height" multiplier="1:1" id="t86-EE-QTI"/>
+                                </constraints>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kLE-IN-O7S">
+                                <rect key="frame" x="179.5" y="28" width="187.5" height="169.5"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g81-8b-nQq">
+                                        <rect key="frame" x="71" y="69" width="46" height="30"/>
+                                        <state key="normal" title="Button"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4hL-SK-QAV">
+                                        <rect key="frame" x="71.5" y="37" width="45" height="30"/>
+                                        <state key="normal" title="Rotate"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0mo-YA-lXI">
+                                        <rect key="frame" x="71" y="101" width="46" height="30"/>
+                                        <state key="normal" title="Button"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="4hL-SK-QAV" firstAttribute="centerX" secondItem="kLE-IN-O7S" secondAttribute="centerX" id="8Cg-kw-Rn4"/>
+                                    <constraint firstItem="g81-8b-nQq" firstAttribute="centerY" secondItem="kLE-IN-O7S" secondAttribute="centerY" id="8fL-kW-Fxm"/>
+                                    <constraint firstItem="g81-8b-nQq" firstAttribute="top" secondItem="4hL-SK-QAV" secondAttribute="bottom" constant="2" id="Pmy-hW-g3J"/>
+                                    <constraint firstItem="0mo-YA-lXI" firstAttribute="top" secondItem="g81-8b-nQq" secondAttribute="bottom" constant="2" id="iVU-aU-xKp"/>
+                                    <constraint firstItem="g81-8b-nQq" firstAttribute="centerX" secondItem="kLE-IN-O7S" secondAttribute="centerX" id="uR4-1K-3pS"/>
+                                    <constraint firstItem="0mo-YA-lXI" firstAttribute="centerX" secondItem="kLE-IN-O7S" secondAttribute="centerX" id="yzC-ru-XXa"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="AOz-9w-Wzd" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="KZb-K0-MXp"/>
+                            <constraint firstItem="AOz-9w-Wzd" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="8" id="PAq-RZ-Hxj"/>
+                            <constraint firstItem="kLE-IN-O7S" firstAttribute="leading" secondItem="AOz-9w-Wzd" secondAttribute="trailing" constant="2" id="V6v-nt-Eaz"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="kLE-IN-O7S" secondAttribute="trailing" constant="8" id="X7s-ST-9AC"/>
+                            <constraint firstItem="kLE-IN-O7S" firstAttribute="height" secondItem="AOz-9w-Wzd" secondAttribute="height" id="cGT-3B-b2f"/>
+                            <constraint firstItem="kLE-IN-O7S" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="8" id="p4x-e8-taE"/>
+                            <constraint firstItem="kLE-IN-O7S" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.5" id="zOT-X6-ksF"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="136.80000000000001" y="133.5832083958021"/>
         </scene>
     </scenes>
 </document>
