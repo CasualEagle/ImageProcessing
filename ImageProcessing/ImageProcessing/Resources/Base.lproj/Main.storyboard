@@ -51,8 +51,11 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0mo-YA-lXI">
-                                        <rect key="frame" x="71" y="101" width="46" height="30"/>
-                                        <state key="normal" title="Button"/>
+                                        <rect key="frame" x="50" y="101" width="88" height="30"/>
+                                        <state key="normal" title="Mirror Image"/>
+                                        <connections>
+                                            <action selector="mirrorImage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hDx-yw-zqQ"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

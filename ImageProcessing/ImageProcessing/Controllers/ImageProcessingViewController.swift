@@ -14,14 +14,21 @@ class ImageProcessingViewController: UIViewController {
     @IBOutlet weak var finalImageView: UIImageView!
     @IBOutlet private weak var imageView: UIImageView!
 
-    @IBAction func grayscaleImage(_ sender: UIButton) {
+    @IBAction private  func grayscaleImage(_ sender: UIButton) {
         finalImageView.image = imageView.image?.mono
     }
     
-    @IBAction func rotateImage(_ sender: UIButton) {
+    @IBAction private func rotateImage(_ sender: UIButton) {
         
     }
 
+    @IBAction private func mirrorImage(_ sender: UIButton) {
+//        if #available(iOS 10.0, *) {
+//            finalImageView.image = imageView.image?.withHorizontallyFlippedOrientation()
+//        } else {
+            finalImageView.image = UIImage(cgImage: imageView.image!.cgImage!, scale: 1.0, orientation: .upMirrored)
+//        }
+    }
     @IBAction private func chooseImage(_ sender: UIButton) {
         presentActionSheet(title: "Choose image from:",
                            message: nil,
