@@ -20,7 +20,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AOz-9w-Wzd">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="portrait" translatesAutoresizingMaskIntoConstraints="NO" id="AOz-9w-Wzd">
                                 <rect key="frame" x="8" y="28" width="169.5" height="169.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="AOz-9w-Wzd" secondAttribute="height" multiplier="1:1" id="t86-EE-QTI"/>
@@ -83,4 +83,7 @@
             <point key="canvasLocation" x="136.80000000000001" y="133.5832083958021"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="portrait" width="700" height="1049"/>
+    </resources>
 </document>

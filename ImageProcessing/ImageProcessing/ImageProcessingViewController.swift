@@ -43,7 +43,6 @@ class ImageProcessingViewController: UIViewController {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType = .camera
-        imagePicker.allowsEditing = false
         present(imagePicker, animated: true, completion: nil)
     }
 
@@ -54,13 +53,20 @@ class ImageProcessingViewController: UIViewController {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType = .photoLibrary
-        imagePicker.allowsEditing = false
         present(imagePicker, animated: true, completion: nil)
 
     }
 }
 
 extension ImageProcessingViewController: UIImagePickerControllerDelegate {
+
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else {
+            return
+        }
+        imageView.image = image
+        dismiss(animated: true, completion: nil)
+    }
 
 }
 
