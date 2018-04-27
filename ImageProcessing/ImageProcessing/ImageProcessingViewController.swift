@@ -13,18 +13,18 @@ class ImageProcessingViewController: UIViewController {
     @IBOutlet private weak var imageView: UIImageView!
 
     @IBAction private func chooseImage(_ sender: UIButton) {
-        presentActionSheet(title: nil,
-                           message: "Choose image from:",
+        presentActionSheet(title: "Choose image from:",
+                           message: nil,
                            options: .library, .camera, .cancel)
-        { option in
+        { [weak self] option in
 
             switch option {
             case .camera:
-                print("1")
+                self?.openCamera()
             case .library:
-                print("2")
+                self?.openImageLibrary()
             case .cancel:
-                print("3")
+                break
             }
         }
     }
@@ -32,5 +32,38 @@ class ImageProcessingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        print(UIImagePickerController.isSourceTypeAvailable(.photoLibrary))
+        print(UIImagePickerController.isSourceTypeAvailable(.camera))
     }
+
+    private func openCamera() {
+        guard UIImagePickerController.isSourceTypeAvailable(.camera) else {
+            return
+        }
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = .camera
+        imagePicker.allowsEditing = false
+        present(imagePicker, animated: true, completion: nil)
+    }
+
+    private func openImageLibrary() {
+        guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary) else {
+            return
+        }
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = .photoLibrary
+        imagePicker.allowsEditing = false
+        present(imagePicker, animated: true, completion: nil)
+
+    }
+}
+
+extension ImageProcessingViewController: UIImagePickerControllerDelegate {
+
+}
+
+extension ImageProcessingViewController: UINavigationControllerDelegate {
+
 }
