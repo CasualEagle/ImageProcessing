@@ -7,10 +7,20 @@
 //
 
 import UIKit
+import CoreGraphics
 
 class ImageProcessingViewController: UIViewController {
 
+    @IBOutlet weak var finalImageView: UIImageView!
     @IBOutlet private weak var imageView: UIImageView!
+
+    @IBAction func grayscaleImage(_ sender: UIButton) {
+        finalImageView.image = imageView.image?.mono
+    }
+    
+    @IBAction func rotateImage(_ sender: UIButton) {
+        
+    }
 
     @IBAction private func chooseImage(_ sender: UIButton) {
         presentActionSheet(title: "Choose image from:",

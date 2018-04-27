@@ -37,12 +37,18 @@
                                 <rect key="frame" x="179.5" y="28" width="187.5" height="169.5"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g81-8b-nQq">
-                                        <rect key="frame" x="71" y="69" width="46" height="30"/>
-                                        <state key="normal" title="Button"/>
+                                        <rect key="frame" x="60" y="69" width="68" height="30"/>
+                                        <state key="normal" title="Grayscale"/>
+                                        <connections>
+                                            <action selector="grayscaleImage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="IpI-yP-Qo4"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4hL-SK-QAV">
                                         <rect key="frame" x="71.5" y="37" width="45" height="30"/>
                                         <state key="normal" title="Rotate"/>
+                                        <connections>
+                                            <action selector="rotateImage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Sgd-EW-UOE"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0mo-YA-lXI">
                                         <rect key="frame" x="71" y="101" width="46" height="30"/>
@@ -59,22 +65,31 @@
                                     <constraint firstItem="0mo-YA-lXI" firstAttribute="centerX" secondItem="kLE-IN-O7S" secondAttribute="centerX" id="yzC-ru-XXa"/>
                                 </constraints>
                             </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zOZ-yG-fC9">
+                                <rect key="frame" x="103" y="448.5" width="169.5" height="169.5"/>
+                                <color key="backgroundColor" red="0.95109849475060904" green="0.48597734511903745" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="zOZ-yG-fC9" firstAttribute="width" secondItem="AOz-9w-Wzd" secondAttribute="width" id="8ZZ-Jz-JQW"/>
                             <constraint firstItem="WY5-D5-fea" firstAttribute="centerY" secondItem="AOz-9w-Wzd" secondAttribute="centerY" id="I1J-G8-eUp"/>
+                            <constraint firstItem="zOZ-yG-fC9" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Iuw-Fv-QsC"/>
                             <constraint firstItem="AOz-9w-Wzd" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="KZb-K0-MXp"/>
+                            <constraint firstItem="zOZ-yG-fC9" firstAttribute="height" secondItem="AOz-9w-Wzd" secondAttribute="height" id="L6W-1W-2AL"/>
                             <constraint firstItem="WY5-D5-fea" firstAttribute="centerX" secondItem="AOz-9w-Wzd" secondAttribute="centerX" id="Ld6-EU-jMy"/>
                             <constraint firstItem="AOz-9w-Wzd" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="8" id="PAq-RZ-Hxj"/>
                             <constraint firstItem="kLE-IN-O7S" firstAttribute="leading" secondItem="AOz-9w-Wzd" secondAttribute="trailing" constant="2" id="V6v-nt-Eaz"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="kLE-IN-O7S" secondAttribute="trailing" constant="8" id="X7s-ST-9AC"/>
                             <constraint firstItem="kLE-IN-O7S" firstAttribute="height" secondItem="AOz-9w-Wzd" secondAttribute="height" id="cGT-3B-b2f"/>
                             <constraint firstItem="kLE-IN-O7S" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="8" id="p4x-e8-taE"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="zOZ-yG-fC9" secondAttribute="bottom" constant="49" id="xNs-BC-glP"/>
                             <constraint firstItem="kLE-IN-O7S" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.5" id="zOT-X6-ksF"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="finalImageView" destination="zOZ-yG-fC9" id="7is-tm-VZ2"/>
                         <outlet property="imageView" destination="AOz-9w-Wzd" id="uOb-8D-dLX"/>
                     </connections>
                 </viewController>
