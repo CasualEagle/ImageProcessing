@@ -19,7 +19,7 @@ class ImageProcessingViewController: UIViewController {
     }
     
     @IBAction private func rotateImage(_ sender: UIButton) {
-        finalImageView.image = imageView.image?.imageRotatedByDegrees(degrees: 90, flip: true)
+        finalImageView.image = imageView.image?.imageRotatedByDegrees(degrees: 90, flip: false)
     }
 
     @IBAction private func mirrorImage(_ sender: UIButton) {
@@ -29,13 +29,13 @@ class ImageProcessingViewController: UIViewController {
         presentActionSheet(
             title: "Choose image from:",
             message: nil,
-            options: .library, .camera, .cancel) { [weak self] option in
+            options: .photoLibrary, .camera, .cancel) { [weak self] option in
 
                 switch option {
                 case .camera:
-                    self?.openCamera()
-                case .library:
-                    self?.openImageLibrary()
+                    self?.openImagePicker(.camera)
+                case .photoLibrary:
+                    self?.openImagePicker(.photoLibrary)
                 default:
                     break
                 }
@@ -49,25 +49,14 @@ class ImageProcessingViewController: UIViewController {
         print(UIImagePickerController.isSourceTypeAvailable(.camera))
     }
 
-    private func openCamera() {
-        guard UIImagePickerController.isSourceTypeAvailable(.camera) else {
+    private func openImagePicker(_ source: UIImagePickerControllerSourceType) {
+        guard UIImagePickerController.isSourceTypeAvailable(source) else {
             return
         }
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
-        imagePicker.sourceType = .camera
+        imagePicker.sourceType = source
         present(imagePicker, animated: true, completion: nil)
-    }
-
-    private func openImageLibrary() {
-        guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary) else {
-            return
-        }
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = .photoLibrary
-        present(imagePicker, animated: true, completion: nil)
-
     }
 }
 

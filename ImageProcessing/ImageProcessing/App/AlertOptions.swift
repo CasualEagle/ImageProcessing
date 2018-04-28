@@ -11,6 +11,6 @@ import Foundation
 enum AlertOption: String {
 
     case cancel = "Cancel"
-    case library = "Library"
+    case photoLibrary = "Photo Library"
     case camera = "Camera"
 }

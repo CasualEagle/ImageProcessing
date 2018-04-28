@@ -33,7 +33,7 @@ extension UIImage {
             }
             return UIImage(cgImage: cgImage,
                            scale: 1.0,
-                           orientation: .upMirrored)
+                           orientation: .rightMirrored)
         }
     }
 
@@ -70,16 +70,11 @@ extension UIImage {
             yFlip = CGFloat(1.0)
         }
 
-        bitmap?.scaleBy(x: -1.0, y: yFlip)
-//        bitmap?.draw(CGImage, in: CGRect(x: -size.width / 2,
-//                                         y: -size.height / 2,
-//                                         width: size.width,
-//                                         height: size.height))
+        bitmap?.scaleBy(x: yFlip, y: 1.0)
         draw(in: CGRect(x: -size.width / 2,
                         y: -size.height / 2,
                         width: size.width,
                         height: size.height))
-//        CGContextDrawImage(bitmap, CGRectMake(-size.width / 2, -size.height / 2, size.width, size.height), CGImage as! CGImage)
 
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
