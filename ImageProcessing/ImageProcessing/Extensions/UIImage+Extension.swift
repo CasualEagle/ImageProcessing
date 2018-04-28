@@ -23,5 +23,18 @@ extension UIImage {
 
         return processedImage
     }
+
+    var flip: UIImage? {
+        if #available(iOS 10.0, *) {
+            return self.withHorizontallyFlippedOrientation()
+        } else {
+            guard let cgImage = self.cgImage else {
+                return nil
+            }
+            return UIImage(cgImage: cgImage,
+                           scale: 1.0,
+                           orientation: .upMirrored)
+        }
+    }
     
 }

@@ -23,26 +23,22 @@ class ImageProcessingViewController: UIViewController {
     }
 
     @IBAction private func mirrorImage(_ sender: UIButton) {
-//        if #available(iOS 10.0, *) {
-//            finalImageView.image = imageView.image?.withHorizontallyFlippedOrientation()
-//        } else {
-            finalImageView.image = UIImage(cgImage: imageView.image!.cgImage!, scale: 1.0, orientation: .upMirrored)
-//        }
+            finalImageView.image = imageView.image?.flip
     }
     @IBAction private func chooseImage(_ sender: UIButton) {
-        presentActionSheet(title: "Choose image from:",
-                           message: nil,
-                           options: .library, .camera, .cancel)
-        { [weak self] option in
+        presentActionSheet(
+            title: "Choose image from:",
+            message: nil,
+            options: .library, .camera, .cancel) { [weak self] option in
 
-            switch option {
-            case .camera:
-                self?.openCamera()
-            case .library:
-                self?.openImageLibrary()
-            case .cancel:
-                break
-            }
+                switch option {
+                case .camera:
+                    self?.openCamera()
+                case .library:
+                    self?.openImageLibrary()
+                default:
+                    break
+                }
         }
     }
 
