@@ -19,7 +19,7 @@ class ImageProcessingViewController: UIViewController {
     }
     
     @IBAction private func rotateImage(_ sender: UIButton) {
-        
+        finalImageView.image = imageView.image?.imageRotatedByDegrees(degrees: 90, flip: true)
     }
 
     @IBAction private func mirrorImage(_ sender: UIButton) {

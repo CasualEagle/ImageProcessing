@@ -14,10 +14,11 @@ extension UIViewController {
         let alertController = UIAlertController(title: title,
                                                 message: message,
                                                 preferredStyle: .actionSheet)
-        for option in options {
 
-            let style: UIAlertActionStyle = option == .cancel ? .cancel : .default
-            let action = UIAlertAction(title: option.rawValue, style: style) { _ in
+        for option in options {
+            let style: UIAlertActionStyle = (option == .cancel) ? .cancel : .default
+            let action = UIAlertAction(title: option.rawValue,
+                                       style: style) { _ in
                 completion(option)
             }
             alertController.addAction(action)
