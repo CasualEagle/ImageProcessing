@@ -12,7 +12,7 @@ import CoreGraphics
 
 class ImageProcessingViewController: UIViewController {
 
-//    @IBOutlet weak var finalImageView: UIImageView!
+    @IBOutlet private weak var chooseImageLabel: UILabel!
     @IBOutlet private weak var imageView: UIImageView!
     @IBOutlet private weak var tableView: UITableView!
 
@@ -40,7 +40,33 @@ class ImageProcessingViewController: UIViewController {
         }
     }
 
-    @IBAction private func chooseImage(_ sender: UIButton) {
+    var images: [ProcessedImage] = []
+    var viewModel = ImageProcessingViewModel()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        let nib = UINib(nibName: ImageProcessingTableViewCell.reuseID,
+                        bundle: nil)
+        tableView.register(nib,
+                           forCellReuseIdentifier: ImageProcessingTableViewCell.reuseID)
+
+        imageView.isUserInteractionEnabled = true
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(chooseImage))
+        imageView.addGestureRecognizer(gesture)
+    }
+
+    private func openImagePicker(_ source: UIImagePickerControllerSourceType) {
+        guard UIImagePickerController.isSourceTypeAvailable(source) else {
+            return
+        }
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = source
+        present(imagePicker, animated: true, completion: nil)
+    }
+
+    @objc private func chooseImage() {
         presentActionSheet(
             title: "Choose image from:",
             message: nil,
@@ -56,27 +82,25 @@ class ImageProcessingViewController: UIViewController {
                 }
         }
     }
-
-    var images: [ProcessedImage] = []
-    var viewModel = ImageProcessingViewModel()
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        let nib = UINib(nibName: ImageProcessingTableViewCell.reuseID,
-                        bundle: nil)
-        tableView.register(nib,
-                           forCellReuseIdentifier: ImageProcessingTableViewCell.reuseID)
+    private func savePhotoToLibrary(at indexPath: IndexPath) {
+        let image = viewModel.images[indexPath.row].image
+        UIImageWriteToSavedPhotosAlbum(image,
+                                       self,
+                                       #selector(image(_:didFinishSavingWithError:contextInfo:)),
+                                       nil)
     }
 
-    private func openImagePicker(_ source: UIImagePickerControllerSourceType) {
-        guard UIImagePickerController.isSourceTypeAvailable(source) else {
-            return
+    @objc private func image(_ image: UIImage, didFinishSavingWithError error: NSError?, contextInfo: UnsafeRawPointer) {
+        if let error = error {
+
+            let alert = UIAlertController(title: "Save error", message: error.localizedDescription, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            present(alert, animated: true)
+        } else {
+            let alert = UIAlertController(title: "Saved!", message: "The image has been saved to your photos.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            present(alert, animated: true)
         }
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = source
-        present(imagePicker, animated: true, completion: nil)
     }
 }
 
@@ -88,6 +112,7 @@ extension ImageProcessingViewController: UIImagePickerControllerDelegate {
         }
         imageView.image = image
         dismiss(animated: true, completion: nil)
+        chooseImageLabel.isHidden = true
     }
 
 }
@@ -113,5 +138,18 @@ extension ImageProcessingViewController: UITableViewDataSource {
 extension ImageProcessingViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        presentActionSheet(title: nil, message: nil, options: .save, .useAsPrimary, .delete, .cancel) { [weak self] option in
+            switch option {
+            case .save:
+                self?.savePhotoToLibrary(at: indexPath)
+            case .delete:
+                self?.viewModel.removeObject(at: indexPath)
+                tableView.reloadData()
+            case .useAsPrimary:
+                self?.imageView.image = self?.viewModel.images[indexPath.row].image
+            default:
+                break
+            }
+        }
     }
 }

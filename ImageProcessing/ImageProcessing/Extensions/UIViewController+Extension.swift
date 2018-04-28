@@ -16,7 +16,16 @@ extension UIViewController {
                                                 preferredStyle: .actionSheet)
 
         for option in options {
-            let style: UIAlertActionStyle = (option == .cancel) ? .cancel : .default
+            let style: UIAlertActionStyle
+            switch option {
+            case .cancel:
+                style = .cancel
+            case .delete:
+                style = .destructive
+            default:
+                style = .default
+            }
+
             let action = UIAlertAction(title: option.rawValue,
                                        style: style) { _ in
                 completion(option)

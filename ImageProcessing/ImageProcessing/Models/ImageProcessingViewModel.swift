@@ -38,4 +38,8 @@ struct ImageProcessingViewModel {
             completion(true)
         }
     }
+
+    mutating func removeObject(at indexPath: IndexPath) {
+        images.remove(at: indexPath.row)
+    }
 }
