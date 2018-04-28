@@ -13,11 +13,12 @@
 		FE437D24209333DB00C2A305 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE437D22209333DB00C2A305 /* LaunchScreen.storyboard */; };
 		FE437D2D2093378F00C2A305 /* ImageProcessingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE437D2C2093378F00C2A305 /* ImageProcessingViewController.swift */; };
 		FE437D2F2093540B00C2A305 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE437D2E2093540B00C2A305 /* UIViewController+Extension.swift */; };
-		FE437D312093573200C2A305 /* AlertOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE437D302093573200C2A305 /* AlertOptions.swift */; };
+		FE437D312093573200C2A305 /* AlertOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE437D302093573200C2A305 /* AlertOption.swift */; };
 		FE437D362093675D00C2A305 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE437D352093675D00C2A305 /* UIImage+Extension.swift */; };
 		FE437D3820947C6400C2A305 /* ProcessedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE437D3720947C6400C2A305 /* ProcessedImage.swift */; };
 		FE437D3C20947DFE00C2A305 /* ImageProcessingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE437D3A20947DFE00C2A305 /* ImageProcessingTableViewCell.swift */; };
 		FE437D3D20947DFE00C2A305 /* ImageProcessingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE437D3B20947DFE00C2A305 /* ImageProcessingTableViewCell.xib */; };
+		FE437D41209490C400C2A305 /* Modification.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE437D40209490C400C2A305 /* Modification.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,11 +30,12 @@
 		FE437D25209333DB00C2A305 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FE437D2C2093378F00C2A305 /* ImageProcessingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProcessingViewController.swift; sourceTree = "<group>"; };
 		FE437D2E2093540B00C2A305 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
-		FE437D302093573200C2A305 /* AlertOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertOptions.swift; sourceTree = "<group>"; };
+		FE437D302093573200C2A305 /* AlertOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertOption.swift; sourceTree = "<group>"; };
 		FE437D352093675D00C2A305 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		FE437D3720947C6400C2A305 /* ProcessedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessedImage.swift; sourceTree = "<group>"; };
 		FE437D3A20947DFE00C2A305 /* ImageProcessingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProcessingTableViewCell.swift; sourceTree = "<group>"; };
 		FE437D3B20947DFE00C2A305 /* ImageProcessingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageProcessingTableViewCell.xib; sourceTree = "<group>"; };
+		FE437D40209490C400C2A305 /* Modification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modification.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,7 +101,8 @@
 			isa = PBXGroup;
 			children = (
 				FE437D19209333D900C2A305 /* AppDelegate.swift */,
-				FE437D302093573200C2A305 /* AlertOptions.swift */,
+				FE437D302093573200C2A305 /* AlertOption.swift */,
+				FE437D40209490C400C2A305 /* Modification.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -212,11 +215,12 @@
 			files = (
 				FE437D3C20947DFE00C2A305 /* ImageProcessingTableViewCell.swift in Sources */,
 				FE437D2F2093540B00C2A305 /* UIViewController+Extension.swift in Sources */,
-				FE437D312093573200C2A305 /* AlertOptions.swift in Sources */,
+				FE437D312093573200C2A305 /* AlertOption.swift in Sources */,
 				FE437D3820947C6400C2A305 /* ProcessedImage.swift in Sources */,
 				FE437D362093675D00C2A305 /* UIImage+Extension.swift in Sources */,
 				FE437D1A209333D900C2A305 /* AppDelegate.swift in Sources */,
 				FE437D2D2093378F00C2A305 /* ImageProcessingViewController.swift in Sources */,
+				FE437D41209490C400C2A305 /* Modification.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -71,6 +71,10 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Lp3-NO-Jwi">
                                 <rect key="frame" x="0.0" y="207.5" width="375" height="459.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="qE7-QZ-k5t"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="h0D-A1-egE"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -93,6 +97,7 @@
                     </view>
                     <connections>
                         <outlet property="imageView" destination="AOz-9w-Wzd" id="uOb-8D-dLX"/>
+                        <outlet property="tableView" destination="Lp3-NO-Jwi" id="CJq-fx-oJt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

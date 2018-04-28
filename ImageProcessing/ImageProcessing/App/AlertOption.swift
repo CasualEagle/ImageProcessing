@@ -1,5 +1,5 @@
 //
-//  AlertOptions.swift
+//  AlertOption.swift
 //  ImageProcessing
 //
 //  Created by Zstudent on 27/04/2018.

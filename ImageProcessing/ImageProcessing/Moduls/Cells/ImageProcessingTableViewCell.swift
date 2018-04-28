@@ -11,8 +11,12 @@ import UIKit
 class ImageProcessingTableViewCell: UITableViewCell {
 
     @IBOutlet weak var modificationLabel: UILabel!
+    @IBOutlet weak var processedImageView: UIImageView!
 
-    @IBOutlet weak var imageView: UIImageView!
-
+    static let reuseID = "ImageProcessingTableViewCell"
     
+    func configure(processedImage: ProcessedImage) {
+        modificationLabel.text = processedImage.modification.rawValue
+        processedImageView.image = processedImage.image
+    }
 }

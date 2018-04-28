@@ -9,6 +9,6 @@
 import UIKit
 
 struct ProcessedImage {
-    let modification: String
+    let modification: Modification
     let image: UIImage
 }

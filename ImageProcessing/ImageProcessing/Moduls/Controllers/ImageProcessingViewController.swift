@@ -13,17 +13,33 @@ class ImageProcessingViewController: UIViewController {
 
     @IBOutlet weak var finalImageView: UIImageView!
     @IBOutlet private weak var imageView: UIImageView!
+    @IBOutlet private weak var tableView: UITableView!
 
     @IBAction private  func grayscaleImage(_ sender: UIButton) {
-        finalImageView.image = imageView.image?.mono
+        guard let image = imageView.image?.mono else {
+            return
+        }
+        let processedImage = ProcessedImage(modification: .grayscale, image: image)
+        images.insert(processedImage, at: 0)
+        tableView.reloadData()
     }
     
     @IBAction private func rotateImage(_ sender: UIButton) {
-        finalImageView.image = imageView.image?.imageRotatedByDegrees(degrees: 90, flip: false)
+        guard let image = imageView.image?.imageRotatedByDegrees(degrees: 90, flip: false) else {
+            return
+        }
+        let processedImage = ProcessedImage(modification: .rotate, image: image)
+        images.insert(processedImage, at: 0)
+        tableView.reloadData()
     }
 
     @IBAction private func mirrorImage(_ sender: UIButton) {
-            finalImageView.image = imageView.image?.flip
+        guard let image = imageView.image?.flip else {
+            return
+        }
+        let processedImage = ProcessedImage(modification: .mirror, image: image)
+        images.insert(processedImage, at: 0)
+        tableView.reloadData()
     }
 
     @IBAction private func chooseImage(_ sender: UIButton) {
@@ -43,9 +59,14 @@ class ImageProcessingViewController: UIViewController {
         }
     }
 
+    var images: [ProcessedImage] = []
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let nib = UINib(nibName: ImageProcessingTableViewCell.reuseID,
+                        bundle: nil)
+        tableView.register(nib,
+                           forCellReuseIdentifier: ImageProcessingTableViewCell.reuseID)
     }
 
     private func openImagePicker(_ source: UIImagePickerControllerSourceType) {
@@ -77,11 +98,13 @@ extension ImageProcessingViewController: UINavigationControllerDelegate {
 
 extension ImageProcessingViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        <#code#>
+        return images.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        <#code#>
+        let cell = tableView.dequeueReusableCell(withIdentifier: ImageProcessingTableViewCell.reuseID, for: indexPath) as! ImageProcessingTableViewCell
+        cell.configure(processedImage: images[indexPath.row])
+        return cell
     }
 
 
