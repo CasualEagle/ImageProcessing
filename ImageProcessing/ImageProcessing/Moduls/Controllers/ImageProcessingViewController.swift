@@ -25,6 +25,7 @@ class ImageProcessingViewController: UIViewController {
     @IBAction private func mirrorImage(_ sender: UIButton) {
             finalImageView.image = imageView.image?.flip
     }
+
     @IBAction private func chooseImage(_ sender: UIButton) {
         presentActionSheet(
             title: "Choose image from:",
@@ -45,8 +46,6 @@ class ImageProcessingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        print(UIImagePickerController.isSourceTypeAvailable(.photoLibrary))
-        print(UIImagePickerController.isSourceTypeAvailable(.camera))
     }
 
     private func openImagePicker(_ source: UIImagePickerControllerSourceType) {
@@ -74,4 +73,20 @@ extension ImageProcessingViewController: UIImagePickerControllerDelegate {
 
 extension ImageProcessingViewController: UINavigationControllerDelegate {
 
+}
+
+extension ImageProcessingViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        <#code#>
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        <#code#>
+    }
+
+
+}
+
+extension ImageProcessingViewController: UITableViewDelegate {
+    
 }

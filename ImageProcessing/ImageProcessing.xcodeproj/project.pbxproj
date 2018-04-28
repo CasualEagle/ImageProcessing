@@ -15,6 +15,9 @@
 		FE437D2F2093540B00C2A305 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE437D2E2093540B00C2A305 /* UIViewController+Extension.swift */; };
 		FE437D312093573200C2A305 /* AlertOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE437D302093573200C2A305 /* AlertOptions.swift */; };
 		FE437D362093675D00C2A305 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE437D352093675D00C2A305 /* UIImage+Extension.swift */; };
+		FE437D3820947C6400C2A305 /* ProcessedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE437D3720947C6400C2A305 /* ProcessedImage.swift */; };
+		FE437D3C20947DFE00C2A305 /* ImageProcessingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE437D3A20947DFE00C2A305 /* ImageProcessingTableViewCell.swift */; };
+		FE437D3D20947DFE00C2A305 /* ImageProcessingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE437D3B20947DFE00C2A305 /* ImageProcessingTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +31,9 @@
 		FE437D2E2093540B00C2A305 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		FE437D302093573200C2A305 /* AlertOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertOptions.swift; sourceTree = "<group>"; };
 		FE437D352093675D00C2A305 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
+		FE437D3720947C6400C2A305 /* ProcessedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessedImage.swift; sourceTree = "<group>"; };
+		FE437D3A20947DFE00C2A305 /* ImageProcessingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProcessingTableViewCell.swift; sourceTree = "<group>"; };
+		FE437D3B20947DFE00C2A305 /* ImageProcessingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageProcessingTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,8 +66,9 @@
 		FE437D18209333D900C2A305 /* ImageProcessing */ = {
 			isa = PBXGroup;
 			children = (
+				FE437D3920947C6800C2A305 /* Models */,
 				FE437D33209366CA00C2A305 /* App */,
-				FE437D342093670800C2A305 /* Controllers */,
+				FE437D3F20947F8B00C2A305 /* Moduls */,
 				FE437D322093669800C2A305 /* Extensions */,
 				FE437D2B2093348900C2A305 /* Resources */,
 			);
@@ -103,6 +110,32 @@
 				FE437D2C2093378F00C2A305 /* ImageProcessingViewController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		FE437D3920947C6800C2A305 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				FE437D3720947C6400C2A305 /* ProcessedImage.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		FE437D3E20947E0200C2A305 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				FE437D3A20947DFE00C2A305 /* ImageProcessingTableViewCell.swift */,
+				FE437D3B20947DFE00C2A305 /* ImageProcessingTableViewCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		FE437D3F20947F8B00C2A305 /* Moduls */ = {
+			isa = PBXGroup;
+			children = (
+				FE437D342093670800C2A305 /* Controllers */,
+				FE437D3E20947E0200C2A305 /* Cells */,
+			);
+			path = Moduls;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -163,6 +196,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE437D3D20947DFE00C2A305 /* ImageProcessingTableViewCell.xib in Resources */,
 				FE437D24209333DB00C2A305 /* LaunchScreen.storyboard in Resources */,
 				FE437D21209333DB00C2A305 /* Assets.xcassets in Resources */,
 				FE437D1F209333D900C2A305 /* Main.storyboard in Resources */,
@@ -176,8 +210,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE437D3C20947DFE00C2A305 /* ImageProcessingTableViewCell.swift in Sources */,
 				FE437D2F2093540B00C2A305 /* UIViewController+Extension.swift in Sources */,
 				FE437D312093573200C2A305 /* AlertOptions.swift in Sources */,
+				FE437D3820947C6400C2A305 /* ProcessedImage.swift in Sources */,
 				FE437D362093675D00C2A305 /* UIImage+Extension.swift in Sources */,
 				FE437D1A209333D900C2A305 /* AppDelegate.swift in Sources */,
 				FE437D2D2093378F00C2A305 /* ImageProcessingViewController.swift in Sources */,
