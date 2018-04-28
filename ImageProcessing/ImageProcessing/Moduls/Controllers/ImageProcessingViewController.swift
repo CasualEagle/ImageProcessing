@@ -9,37 +9,35 @@
 import UIKit
 import CoreGraphics
 
+
 class ImageProcessingViewController: UIViewController {
 
-    @IBOutlet weak var finalImageView: UIImageView!
+//    @IBOutlet weak var finalImageView: UIImageView!
     @IBOutlet private weak var imageView: UIImageView!
     @IBOutlet private weak var tableView: UITableView!
 
     @IBAction private  func grayscaleImage(_ sender: UIButton) {
-        guard let image = imageView.image?.mono else {
-            return
+        viewModel.modifyImage(modification: .grayscale, image: imageView.image) { [weak self] success in
+            if success {
+                self?.tableView.reloadData()
+            }
         }
-        let processedImage = ProcessedImage(modification: .grayscale, image: image)
-        images.insert(processedImage, at: 0)
-        tableView.reloadData()
     }
     
     @IBAction private func rotateImage(_ sender: UIButton) {
-        guard let image = imageView.image?.imageRotatedByDegrees(degrees: 90, flip: false) else {
-            return
+        viewModel.modifyImage(modification: .rotate, image: imageView.image) { [weak self] success in
+            if success {
+                self?.tableView.reloadData()
+            }
         }
-        let processedImage = ProcessedImage(modification: .rotate, image: image)
-        images.insert(processedImage, at: 0)
-        tableView.reloadData()
     }
 
     @IBAction private func mirrorImage(_ sender: UIButton) {
-        guard let image = imageView.image?.flip else {
-            return
+        viewModel.modifyImage(modification: .mirror, image: imageView.image) { [weak self] success in
+            if success {
+                self?.tableView.reloadData()
+            }
         }
-        let processedImage = ProcessedImage(modification: .mirror, image: image)
-        images.insert(processedImage, at: 0)
-        tableView.reloadData()
     }
 
     @IBAction private func chooseImage(_ sender: UIButton) {
@@ -60,6 +58,8 @@ class ImageProcessingViewController: UIViewController {
     }
 
     var images: [ProcessedImage] = []
+    var viewModel = ImageProcessingViewModel()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -98,12 +98,12 @@ extension ImageProcessingViewController: UINavigationControllerDelegate {
 
 extension ImageProcessingViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return images.count
+        return viewModel.images.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ImageProcessingTableViewCell.reuseID, for: indexPath) as! ImageProcessingTableViewCell
-        cell.configure(processedImage: images[indexPath.row])
+        cell.configure(processedImage: viewModel.images[indexPath.row])
         return cell
     }
 
@@ -111,5 +111,7 @@ extension ImageProcessingViewController: UITableViewDataSource {
 }
 
 extension ImageProcessingViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 }

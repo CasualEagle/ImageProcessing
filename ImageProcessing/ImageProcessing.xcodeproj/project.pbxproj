@@ -19,6 +19,8 @@
 		FE437D3C20947DFE00C2A305 /* ImageProcessingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE437D3A20947DFE00C2A305 /* ImageProcessingTableViewCell.swift */; };
 		FE437D3D20947DFE00C2A305 /* ImageProcessingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE437D3B20947DFE00C2A305 /* ImageProcessingTableViewCell.xib */; };
 		FE437D41209490C400C2A305 /* Modification.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE437D40209490C400C2A305 /* Modification.swift */; };
+		FE437D452094954E00C2A305 /* CGFloat+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE437D442094954E00C2A305 /* CGFloat+Extension.swift */; };
+		FE437D472094980000C2A305 /* ImageProcessingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE437D462094980000C2A305 /* ImageProcessingViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +38,8 @@
 		FE437D3A20947DFE00C2A305 /* ImageProcessingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProcessingTableViewCell.swift; sourceTree = "<group>"; };
 		FE437D3B20947DFE00C2A305 /* ImageProcessingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageProcessingTableViewCell.xib; sourceTree = "<group>"; };
 		FE437D40209490C400C2A305 /* Modification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modification.swift; sourceTree = "<group>"; };
+		FE437D442094954E00C2A305 /* CGFloat+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extension.swift"; sourceTree = "<group>"; };
+		FE437D462094980000C2A305 /* ImageProcessingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProcessingViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +97,7 @@
 			children = (
 				FE437D2E2093540B00C2A305 /* UIViewController+Extension.swift */,
 				FE437D352093675D00C2A305 /* UIImage+Extension.swift */,
+				FE437D442094954E00C2A305 /* CGFloat+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -119,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				FE437D3720947C6400C2A305 /* ProcessedImage.swift */,
+				FE437D462094980000C2A305 /* ImageProcessingViewModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -218,6 +224,8 @@
 				FE437D312093573200C2A305 /* AlertOption.swift in Sources */,
 				FE437D3820947C6400C2A305 /* ProcessedImage.swift in Sources */,
 				FE437D362093675D00C2A305 /* UIImage+Extension.swift in Sources */,
+				FE437D472094980000C2A305 /* ImageProcessingViewModel.swift in Sources */,
+				FE437D452094954E00C2A305 /* CGFloat+Extension.swift in Sources */,
 				FE437D1A209333D900C2A305 /* AppDelegate.swift in Sources */,
 				FE437D2D2093378F00C2A305 /* ImageProcessingViewController.swift in Sources */,
 				FE437D41209490C400C2A305 /* Modification.swift in Sources */,
