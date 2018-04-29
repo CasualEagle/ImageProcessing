@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		005FF7972095CC1D00218EB0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005FF7962095CC1D00218EB0 /* Constants.swift */; };
 		FE437D1A209333D900C2A305 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE437D19209333D900C2A305 /* AppDelegate.swift */; };
 		FE437D1F209333D900C2A305 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE437D1D209333D900C2A305 /* Main.storyboard */; };
 		FE437D21209333DB00C2A305 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE437D20209333DB00C2A305 /* Assets.xcassets */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		005FF7962095CC1D00218EB0 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		FE437D16209333D900C2A305 /* ImageProcessing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageProcessing.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE437D19209333D900C2A305 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FE437D1E209333D900C2A305 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 				FE437D19209333D900C2A305 /* AppDelegate.swift */,
 				FE437D302093573200C2A305 /* AlertOption.swift */,
 				FE437D40209490C400C2A305 /* Modification.swift */,
+				005FF7962095CC1D00218EB0 /* Constants.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -220,6 +223,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FE437D3C20947DFE00C2A305 /* ImageProcessingTableViewCell.swift in Sources */,
+				005FF7972095CC1D00218EB0 /* Constants.swift in Sources */,
 				FE437D2F2093540B00C2A305 /* UIViewController+Extension.swift in Sources */,
 				FE437D312093573200C2A305 /* AlertOption.swift in Sources */,
 				FE437D3820947C6400C2A305 /* ProcessedImage.swift in Sources */,

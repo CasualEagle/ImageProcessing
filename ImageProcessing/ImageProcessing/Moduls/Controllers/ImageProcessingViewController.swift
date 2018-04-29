@@ -68,7 +68,7 @@ class ImageProcessingViewController: UIViewController {
 
     @objc private func chooseImage() {
         presentActionSheet(
-            title: "Choose image from:",
+            title: Constants.Title.chooseImage,
             message: nil,
             options: .photoLibrary, .camera, .cancel) { [weak self] option in
 
@@ -93,12 +93,18 @@ class ImageProcessingViewController: UIViewController {
     @objc private func image(_ image: UIImage, didFinishSavingWithError error: NSError?, contextInfo: UnsafeRawPointer) {
         if let error = error {
 
-            let alert = UIAlertController(title: "Save error", message: error.localizedDescription, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            let alert = UIAlertController(title: Constants.Title.saveError,
+                                          message: error.localizedDescription,
+                                          preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: Constants.Title.ok,
+                                          style: .default))
             present(alert, animated: true)
         } else {
-            let alert = UIAlertController(title: "Saved!", message: "The image has been saved to your photos.", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            let alert = UIAlertController(title: Constants.Title.saved,
+                                          message: Constants.Message.imageSaved,
+                                          preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: Constants.Title.ok,
+                                          style: .default))
             present(alert, animated: true)
         }
     }
