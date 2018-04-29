@@ -29,36 +29,49 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kLE-IN-O7S">
                                 <rect key="frame" x="179.5" y="28" width="187.5" height="169.5"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g81-8b-nQq">
-                                        <rect key="frame" x="60" y="69" width="68" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g81-8b-nQq" customClass="ProcessingButton" customModule="ImageProcessing" customModuleProvider="target">
+                                        <rect key="frame" x="20.5" y="44" width="147.5" height="30"/>
                                         <state key="normal" title="Grayscale"/>
                                         <connections>
-                                            <action selector="grayscaleImage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="IpI-yP-Qo4"/>
+                                            <action selector="processImage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wN6-mB-ZJh"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4hL-SK-QAV">
-                                        <rect key="frame" x="71.5" y="37" width="45" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4hL-SK-QAV" customClass="ProcessingButton" customModule="ImageProcessing" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="10" width="147.5" height="30"/>
                                         <state key="normal" title="Rotate"/>
                                         <connections>
-                                            <action selector="rotateImage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Sgd-EW-UOE"/>
+                                            <action selector="processImage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="J0r-xD-EGE"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0mo-YA-lXI">
-                                        <rect key="frame" x="50" y="101" width="88" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0mo-YA-lXI" customClass="ProcessingButton" customModule="ImageProcessing" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="78" width="147.5" height="30"/>
                                         <state key="normal" title="Mirror Image"/>
                                         <connections>
-                                            <action selector="mirrorImage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hDx-yw-zqQ"/>
+                                            <action selector="processImage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2zQ-BI-Phn"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B0k-ck-dXu" customClass="ProcessingButton" customModule="ImageProcessing" customModuleProvider="target">
+                                        <rect key="frame" x="20.5" y="112" width="147.5" height="30"/>
+                                        <state key="normal" title="Invert Colors"/>
+                                        <connections>
+                                            <action selector="processImage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="g8V-zR-s5T"/>
                                         </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="4hL-SK-QAV" firstAttribute="centerX" secondItem="kLE-IN-O7S" secondAttribute="centerX" id="8Cg-kw-Rn4"/>
-                                    <constraint firstItem="g81-8b-nQq" firstAttribute="centerY" secondItem="kLE-IN-O7S" secondAttribute="centerY" id="8fL-kW-Fxm"/>
-                                    <constraint firstItem="g81-8b-nQq" firstAttribute="top" secondItem="4hL-SK-QAV" secondAttribute="bottom" constant="2" id="Pmy-hW-g3J"/>
-                                    <constraint firstItem="0mo-YA-lXI" firstAttribute="top" secondItem="g81-8b-nQq" secondAttribute="bottom" constant="2" id="iVU-aU-xKp"/>
+                                    <constraint firstItem="0mo-YA-lXI" firstAttribute="leading" secondItem="kLE-IN-O7S" secondAttribute="leading" constant="20" id="E8d-ZJ-Vk7"/>
+                                    <constraint firstItem="g81-8b-nQq" firstAttribute="width" secondItem="0mo-YA-lXI" secondAttribute="width" id="HPR-bG-s29"/>
+                                    <constraint firstItem="g81-8b-nQq" firstAttribute="top" secondItem="4hL-SK-QAV" secondAttribute="bottom" constant="4" id="Pmy-hW-g3J"/>
+                                    <constraint firstItem="4hL-SK-QAV" firstAttribute="width" secondItem="0mo-YA-lXI" secondAttribute="width" id="YdD-Lo-PmC"/>
+                                    <constraint firstItem="B0k-ck-dXu" firstAttribute="centerX" secondItem="kLE-IN-O7S" secondAttribute="centerX" id="cVz-qD-rEV"/>
+                                    <constraint firstItem="0mo-YA-lXI" firstAttribute="top" secondItem="g81-8b-nQq" secondAttribute="bottom" constant="4" id="iVU-aU-xKp"/>
+                                    <constraint firstAttribute="trailing" secondItem="0mo-YA-lXI" secondAttribute="trailing" constant="20" id="pf0-1b-AE4"/>
+                                    <constraint firstItem="4hL-SK-QAV" firstAttribute="top" secondItem="kLE-IN-O7S" secondAttribute="top" constant="10" id="sQ5-lb-0fp"/>
                                     <constraint firstItem="g81-8b-nQq" firstAttribute="centerX" secondItem="kLE-IN-O7S" secondAttribute="centerX" id="uR4-1K-3pS"/>
-                                    <constraint firstItem="0mo-YA-lXI" firstAttribute="centerX" secondItem="kLE-IN-O7S" secondAttribute="centerX" id="yzC-ru-XXa"/>
+                                    <constraint firstItem="B0k-ck-dXu" firstAttribute="top" secondItem="0mo-YA-lXI" secondAttribute="bottom" constant="4" id="xu4-hT-oIf"/>
+                                    <constraint firstItem="B0k-ck-dXu" firstAttribute="width" secondItem="0mo-YA-lXI" secondAttribute="width" id="yNw-uq-5ln"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Lp3-NO-Jwi">
@@ -70,9 +83,9 @@
                                 </connections>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose image" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Q4-0I-2Mt">
-                                <rect key="frame" x="8" y="102" width="169" height="21"/>
+                                <rect key="frame" x="8" y="103" width="169" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.44786946262845995" green="0.62918233915481792" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="textColor" red="0.22352941176470589" green="0.51372549019607838" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -81,7 +94,6 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Lp3-NO-Jwi" secondAttribute="bottom" id="JsU-ZW-Z2m"/>
                             <constraint firstItem="AOz-9w-Wzd" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="KZb-K0-MXp"/>
                             <constraint firstItem="AOz-9w-Wzd" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="8" id="PAq-RZ-Hxj"/>
-                            <constraint firstItem="7Q4-0I-2Mt" firstAttribute="centerX" secondItem="AOz-9w-Wzd" secondAttribute="centerX" id="SWs-UB-cCV"/>
                             <constraint firstItem="kLE-IN-O7S" firstAttribute="leading" secondItem="AOz-9w-Wzd" secondAttribute="trailing" constant="2" id="V6v-nt-Eaz"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="kLE-IN-O7S" secondAttribute="trailing" constant="8" id="X7s-ST-9AC"/>
                             <constraint firstItem="Lp3-NO-Jwi" firstAttribute="top" secondItem="AOz-9w-Wzd" secondAttribute="bottom" constant="10" id="a6Q-1T-bHZ"/>
@@ -98,7 +110,11 @@
                     </view>
                     <connections>
                         <outlet property="chooseImageLabel" destination="7Q4-0I-2Mt" id="1eI-g0-g2K"/>
+                        <outlet property="grayscaleButton" destination="g81-8b-nQq" id="Pfn-uc-CFR"/>
                         <outlet property="imageView" destination="AOz-9w-Wzd" id="uOb-8D-dLX"/>
+                        <outlet property="invertButton" destination="B0k-ck-dXu" id="bfp-wH-192"/>
+                        <outlet property="mirrorButton" destination="0mo-YA-lXI" id="Cte-Nk-XpI"/>
+                        <outlet property="rotateButton" destination="4hL-SK-QAV" id="iAl-KH-2xC"/>
                         <outlet property="tableView" destination="Lp3-NO-Jwi" id="CJq-fx-oJt"/>
                     </connections>
                 </viewController>

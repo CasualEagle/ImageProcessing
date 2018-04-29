@@ -16,6 +16,7 @@ enum Constants {
         static let saved = "Saved!"
         static let ok = "OK"
     }
+
     enum Message {
         static let imageSaved = "The image has been saved to your photos."
     }

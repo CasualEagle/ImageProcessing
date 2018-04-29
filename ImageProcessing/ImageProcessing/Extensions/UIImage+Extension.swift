@@ -24,6 +24,20 @@ extension UIImage {
         return processedImage
     }
 
+    var invert: UIImage? {
+        let context = CIContext(options: nil)
+        let currentFilter = CIFilter(name: "CIColorInvert")
+        currentFilter?.setValue(CIImage(image: self), forKey: kCIInputImageKey)
+
+        guard let output = currentFilter?.outputImage,
+            let cgImage = context.createCGImage(output, from: output.extent) else {
+                return nil
+        }
+        let processedImage = UIImage(cgImage: cgImage, scale: scale, orientation: imageOrientation)
+
+        return processedImage
+    }
+
     var mirror: UIImage? {
         if #available(iOS 10.0, *) {
             return self.withHorizontallyFlippedOrientation()
@@ -33,7 +47,7 @@ extension UIImage {
             }
             return UIImage(cgImage: cgImage,
                            scale: 1.0,
-                           orientation: .rightMirrored)
+                           orientation: .upMirrored)
         }
     }
 

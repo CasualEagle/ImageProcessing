@@ -12,4 +12,5 @@ enum Modification: String {
     case rotate = "Rotate"
     case grayscale = "Grayscale"
     case mirror = "Mirror"
+    case invert = "Invert Colors"
 }

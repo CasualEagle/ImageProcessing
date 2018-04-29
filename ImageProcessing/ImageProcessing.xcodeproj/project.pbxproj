@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		005FF7972095CC1D00218EB0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005FF7962095CC1D00218EB0 /* Constants.swift */; };
+		005FF7992095D29D00218EB0 /* ProcessingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005FF7982095D29D00218EB0 /* ProcessingButton.swift */; };
 		FE437D1A209333D900C2A305 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE437D19209333D900C2A305 /* AppDelegate.swift */; };
 		FE437D1F209333D900C2A305 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE437D1D209333D900C2A305 /* Main.storyboard */; };
 		FE437D21209333DB00C2A305 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE437D20209333DB00C2A305 /* Assets.xcassets */; };
@@ -26,6 +27,7 @@
 
 /* Begin PBXFileReference section */
 		005FF7962095CC1D00218EB0 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		005FF7982095D29D00218EB0 /* ProcessingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessingButton.swift; sourceTree = "<group>"; };
 		FE437D16209333D900C2A305 /* ImageProcessing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageProcessing.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE437D19209333D900C2A305 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FE437D1E209333D900C2A305 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 				FE437D3F20947F8B00C2A305 /* Moduls */,
 				FE437D322093669800C2A305 /* Extensions */,
 				FE437D2B2093348900C2A305 /* Resources */,
+				005FF7982095D29D00218EB0 /* ProcessingButton.swift */,
 			);
 			path = ImageProcessing;
 			sourceTree = "<group>";
@@ -232,6 +235,7 @@
 				FE437D452094954E00C2A305 /* CGFloat+Extension.swift in Sources */,
 				FE437D1A209333D900C2A305 /* AppDelegate.swift in Sources */,
 				FE437D2D2093378F00C2A305 /* ImageProcessingViewController.swift in Sources */,
+				005FF7992095D29D00218EB0 /* ProcessingButton.swift in Sources */,
 				FE437D41209490C400C2A305 /* Modification.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

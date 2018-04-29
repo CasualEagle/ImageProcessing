@@ -15,32 +15,23 @@ class ImageProcessingViewController: UIViewController {
     @IBOutlet private weak var chooseImageLabel: UILabel!
     @IBOutlet private weak var imageView: UIImageView!
     @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet private weak var rotateButton: ProcessingButton!
+    @IBOutlet private weak var grayscaleButton: ProcessingButton!
+    @IBOutlet private weak var mirrorButton: ProcessingButton!
+    @IBOutlet private weak var invertButton: ProcessingButton!
 
-    @IBAction private  func grayscaleImage(_ sender: UIButton) {
-        viewModel.modifyImage(modification: .grayscale, image: imageView.image) { [weak self] success in
+    @IBAction private func processImage(_ sender: ProcessingButton) {
+        viewModel.modifyImage(modification: sender.modification,
+                              image: imageView.image)
+        { [weak self] success in
             if success {
                 self?.tableView.reloadData()
             }
         }
     }
+
     
-    @IBAction private func rotateImage(_ sender: UIButton) {
-        viewModel.modifyImage(modification: .rotate, image: imageView.image) { [weak self] success in
-            if success {
-                self?.tableView.reloadData()
-            }
-        }
-    }
 
-    @IBAction private func mirrorImage(_ sender: UIButton) {
-        viewModel.modifyImage(modification: .mirror, image: imageView.image) { [weak self] success in
-            if success {
-                self?.tableView.reloadData()
-            }
-        }
-    }
-
-    var images: [ProcessedImage] = []
     var viewModel = ImageProcessingViewModel()
 
     override func viewDidLoad() {
@@ -54,6 +45,13 @@ class ImageProcessingViewController: UIViewController {
         imageView.isUserInteractionEnabled = true
         let gesture = UITapGestureRecognizer(target: self, action: #selector(chooseImage))
         imageView.addGestureRecognizer(gesture)
+        setupButtons()
+    }
+
+    private func setupButtons() {
+        grayscaleButton.modification = .grayscale
+        mirrorButton.modification = .mirror
+        invertButton.modification = .invert
     }
 
     private func openImagePicker(_ source: UIImagePickerControllerSourceType) {
@@ -82,6 +80,7 @@ class ImageProcessingViewController: UIViewController {
                 }
         }
     }
+
     private func savePhotoToLibrary(at indexPath: IndexPath) {
         let image = viewModel.images[indexPath.row].image
         UIImageWriteToSavedPhotosAlbum(image,
@@ -92,7 +91,6 @@ class ImageProcessingViewController: UIViewController {
 
     @objc private func image(_ image: UIImage, didFinishSavingWithError error: NSError?, contextInfo: UnsafeRawPointer) {
         if let error = error {
-
             let alert = UIAlertController(title: Constants.Title.saveError,
                                           message: error.localizedDescription,
                                           preferredStyle: .alert)
