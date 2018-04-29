@@ -17,7 +17,7 @@ struct ImageProcessingViewModel {
             completion(false)
             return
         }
-        
+        sleep(30)
         let newImage: UIImage?
         switch modification {
         case .grayscale:
