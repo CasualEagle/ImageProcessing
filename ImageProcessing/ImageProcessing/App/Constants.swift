@@ -10,11 +10,13 @@ import Foundation
 
 enum Constants {
 
+    // TODO: Move to buttons
     enum Title {
         static let chooseImage = "Choose image from:"
         static let saveError = "Save error"
         static let saved = "Saved!"
         static let ok = "OK"
+        static let cancel = "Cancel"
     }
 
     enum Message {

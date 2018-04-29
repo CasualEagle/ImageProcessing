@@ -33,6 +33,7 @@ class ImageProcessingViewController: UIViewController {
     
 
     var viewModel = ImageProcessingViewModel()
+    var networkService = NetworkService()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,6 +55,25 @@ class ImageProcessingViewController: UIViewController {
         invertButton.modification = .invert
     }
 
+    @objc private func chooseImage() {
+        presentActionSheet(
+            title: Constants.Title.chooseImage,
+            message: nil,
+            options: .photoLibrary, .camera, .download, .cancel) { [weak self] option in
+
+                switch option {
+                case .camera:
+                    self?.openImagePicker(.camera)
+                case .photoLibrary:
+                    self?.openImagePicker(.photoLibrary)
+                case .download:
+                    self?.showDownloadAlert()
+                default:
+                    break
+                }
+        }
+    }
+
     private func openImagePicker(_ source: UIImagePickerControllerSourceType) {
         guard UIImagePickerController.isSourceTypeAvailable(source) else {
             return
@@ -64,20 +84,32 @@ class ImageProcessingViewController: UIViewController {
         present(imagePicker, animated: true, completion: nil)
     }
 
-    @objc private func chooseImage() {
-        presentActionSheet(
-            title: Constants.Title.chooseImage,
-            message: nil,
-            options: .photoLibrary, .camera, .cancel) { [weak self] option in
+    private func showDownloadAlert() {
+        let downloadAlert = UIAlertController(title: "Type download link",
+                                              message: nil,
+                                              preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: Constants.Title.cancel,
+                                   style: .cancel)
+        let downloadAction = UIAlertAction(title: "Download",
+                                           style: .default)
+        { _ in
+            let string = downloadAlert.textFields?.first?.text
+            self.downloadImage(string)
+        }
+        downloadAlert.addTextField { textField in
+            textField.placeholder = "Enter link here"
+        }
+        downloadAlert.addAction(cancelAction)
+        downloadAlert.addAction(downloadAction)
+        present(downloadAlert, animated: true)
+    }
 
-                switch option {
-                case .camera:
-                    self?.openImagePicker(.camera)
-                case .photoLibrary:
-                    self?.openImagePicker(.photoLibrary)
-                default:
-                    break
-                }
+    private func downloadImage(_ string: String?) {
+        guard let string = string else {
+            return
+        }
+        self.networkService.downloadImage(from: string) { image in
+            self.imageView.image = image
         }
     }
 
