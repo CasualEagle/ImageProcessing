@@ -15,11 +15,10 @@ protocol ImageLoaderDelegate: class {
 
 class ImageLoader: NSObject {
 
-    private var downloadTask: URLSessionDownloadTask?
-    var imageLoaderDelegate: ImageLoaderDelegate?
+    private(set) var downloadTask: URLSessionDownloadTask?
+    weak var imageLoaderDelegate: ImageLoaderDelegate?
 
     func downloadImage(from url: String, completion: @escaping (UIImage?) -> Void) {
-
         downloadTask?.cancel()
         guard let url = URL(string: url) else {
             return
@@ -28,7 +27,6 @@ class ImageLoader: NSObject {
         downloadTask = session.downloadTask(with: url)
         downloadTask?.resume()
     }
-
 }
 
 
@@ -48,5 +46,6 @@ extension ImageLoader: URLSessionDownloadDelegate {
         DispatchQueue.main.async { [weak self] in
             self?.imageLoaderDelegate?.showProgress(progress)
         }
+        print(progress)
     }
 }

@@ -31,8 +31,7 @@ class ImageProcessingViewController: UIViewController {
         }
     }
 
-    
-
+    private lazy var processButtons = [rotateButton, grayscaleButton, mirrorButton, invertButton]
     var viewModel = ImageProcessingViewModel()
     var networkService = ImageLoader()
 
@@ -55,6 +54,7 @@ class ImageProcessingViewController: UIViewController {
         grayscaleButton.modification = .grayscale
         mirrorButton.modification = .mirror
         invertButton.modification = .invert
+        changeButtonsEnableMode(to: false)
     }
 
     @objc private func chooseImage() {
@@ -113,6 +113,7 @@ class ImageProcessingViewController: UIViewController {
         progressView.isHidden = false
         chooseImageLabel.isHidden = false
         imageView.image = nil
+        changeButtonsEnableMode(to: false)
         self.networkService.downloadImage(from: string) { [weak self] image in
             self?.imageView.image = image
         }
@@ -143,6 +144,20 @@ class ImageProcessingViewController: UIViewController {
             present(alert, animated: true)
         }
     }
+
+    private func setNewImage(_ image: UIImage) {
+        imageView.image = image
+        chooseImageLabel.isHidden = true
+        progressView.isHidden = true
+        networkService.downloadTask?.cancel()
+        changeButtonsEnableMode(to: true)
+    }
+
+    private func changeButtonsEnableMode(to isEnable: Bool) {
+        processButtons.forEach {
+            $0?.isEnabled = isEnable
+        }
+    }
 }
 
 extension ImageProcessingViewController: UIImagePickerControllerDelegate {
@@ -151,9 +166,8 @@ extension ImageProcessingViewController: UIImagePickerControllerDelegate {
         guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else {
             return
         }
-        imageView.image = image
+        setNewImage(image)
         dismiss(animated: true, completion: nil)
-        chooseImageLabel.isHidden = true
     }
 
 }
@@ -172,8 +186,6 @@ extension ImageProcessingViewController: UITableViewDataSource {
         cell.configure(processedImage: viewModel.images[indexPath.row])
         return cell
     }
-
-
 }
 
 extension ImageProcessingViewController: UITableViewDelegate {
@@ -202,10 +214,6 @@ extension ImageProcessingViewController: ImageLoaderDelegate {
     }
 
     func updateImage(_ image: UIImage) {
-        chooseImageLabel.isHidden = true
-        progressView.isHidden = true
-        imageView.image = image
+        setNewImage(image)
     }
-
-
 }
