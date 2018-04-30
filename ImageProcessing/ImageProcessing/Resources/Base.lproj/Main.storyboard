@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -17,65 +17,80 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ImageProcessingViewController" customModule="ImageProcessing" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AOz-9w-Wzd">
-                                <rect key="frame" x="8" y="28" width="169.5" height="169.5"/>
+                                <rect key="frame" x="8" y="28.000000000000014" width="230.33333333333334" height="230.33333333333337"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="AOz-9w-Wzd" secondAttribute="height" multiplier="1:1" id="t86-EE-QTI"/>
                                 </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kLE-IN-O7S">
-                                <rect key="frame" x="179.5" y="28" width="187.5" height="169.5"/>
+                                <rect key="frame" x="240.33333333333337" y="28.000000000000014" width="165.66666666666663" height="230.33333333333337"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g81-8b-nQq" customClass="ProcessingButton" customModule="ImageProcessing" customModuleProvider="target">
-                                        <rect key="frame" x="20.5" y="44" width="147.5" height="30"/>
+                                        <rect key="frame" x="10.333333333333314" y="38" width="145.66666666666666" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <state key="normal" title="Grayscale"/>
                                         <connections>
                                             <action selector="processImage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wN6-mB-ZJh"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4hL-SK-QAV" customClass="ProcessingButton" customModule="ImageProcessing" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="10" width="147.5" height="30"/>
+                                        <rect key="frame" x="10" y="4" width="145.66666666666666" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <state key="normal" title="Rotate"/>
                                         <connections>
                                             <action selector="processImage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="J0r-xD-EGE"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0mo-YA-lXI" customClass="ProcessingButton" customModule="ImageProcessing" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="78" width="147.5" height="30"/>
+                                        <rect key="frame" x="10" y="72" width="145.66666666666666" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <state key="normal" title="Mirror Image"/>
                                         <connections>
                                             <action selector="processImage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2zQ-BI-Phn"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B0k-ck-dXu" customClass="ProcessingButton" customModule="ImageProcessing" customModuleProvider="target">
-                                        <rect key="frame" x="20.5" y="112" width="147.5" height="30"/>
+                                        <rect key="frame" x="10" y="106" width="145.66666666666666" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <state key="normal" title="Invert Colors"/>
                                         <connections>
                                             <action selector="processImage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="g8V-zR-s5T"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0SG-fr-5Ip" customClass="ProcessingButton" customModule="ImageProcessing" customModuleProvider="target">
+                                        <rect key="frame" x="10.666666666666657" y="140" width="145.66666666666666" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <state key="normal" title="Left Mirror"/>
+                                        <connections>
+                                            <action selector="processImage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Zqo-rd-zvP"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="4hL-SK-QAV" firstAttribute="centerX" secondItem="kLE-IN-O7S" secondAttribute="centerX" id="8Cg-kw-Rn4"/>
-                                    <constraint firstItem="0mo-YA-lXI" firstAttribute="leading" secondItem="kLE-IN-O7S" secondAttribute="leading" constant="20" id="E8d-ZJ-Vk7"/>
-                                    <constraint firstItem="g81-8b-nQq" firstAttribute="width" secondItem="0mo-YA-lXI" secondAttribute="width" id="HPR-bG-s29"/>
+                                    <constraint firstItem="g81-8b-nQq" firstAttribute="width" secondItem="4hL-SK-QAV" secondAttribute="width" id="09X-IG-bQd"/>
+                                    <constraint firstItem="4hL-SK-QAV" firstAttribute="leading" secondItem="kLE-IN-O7S" secondAttribute="leading" constant="10" id="0j1-Gy-geM"/>
+                                    <constraint firstItem="B0k-ck-dXu" firstAttribute="width" secondItem="4hL-SK-QAV" secondAttribute="width" id="1Ha-s9-QSt"/>
+                                    <constraint firstItem="B0k-ck-dXu" firstAttribute="centerX" secondItem="kLE-IN-O7S" secondAttribute="centerX" id="2rz-Gw-IfN"/>
+                                    <constraint firstItem="0SG-fr-5Ip" firstAttribute="top" secondItem="B0k-ck-dXu" secondAttribute="bottom" constant="4" id="8Be-se-crL"/>
+                                    <constraint firstItem="0mo-YA-lXI" firstAttribute="centerX" secondItem="kLE-IN-O7S" secondAttribute="centerX" id="AuT-Fw-qDD"/>
                                     <constraint firstItem="g81-8b-nQq" firstAttribute="top" secondItem="4hL-SK-QAV" secondAttribute="bottom" constant="4" id="Pmy-hW-g3J"/>
+                                    <constraint firstItem="0SG-fr-5Ip" firstAttribute="centerX" secondItem="kLE-IN-O7S" secondAttribute="centerX" id="QtK-Da-uY4"/>
                                     <constraint firstItem="4hL-SK-QAV" firstAttribute="width" secondItem="0mo-YA-lXI" secondAttribute="width" id="YdD-Lo-PmC"/>
-                                    <constraint firstItem="B0k-ck-dXu" firstAttribute="centerX" secondItem="kLE-IN-O7S" secondAttribute="centerX" id="cVz-qD-rEV"/>
                                     <constraint firstItem="0mo-YA-lXI" firstAttribute="top" secondItem="g81-8b-nQq" secondAttribute="bottom" constant="4" id="iVU-aU-xKp"/>
-                                    <constraint firstAttribute="trailing" secondItem="0mo-YA-lXI" secondAttribute="trailing" constant="20" id="pf0-1b-AE4"/>
-                                    <constraint firstItem="4hL-SK-QAV" firstAttribute="top" secondItem="kLE-IN-O7S" secondAttribute="top" constant="10" id="sQ5-lb-0fp"/>
+                                    <constraint firstItem="0SG-fr-5Ip" firstAttribute="width" secondItem="4hL-SK-QAV" secondAttribute="width" id="rdT-b7-id7"/>
+                                    <constraint firstItem="4hL-SK-QAV" firstAttribute="top" secondItem="kLE-IN-O7S" secondAttribute="top" constant="4" id="sQ5-lb-0fp"/>
                                     <constraint firstItem="g81-8b-nQq" firstAttribute="centerX" secondItem="kLE-IN-O7S" secondAttribute="centerX" id="uR4-1K-3pS"/>
+                                    <constraint firstAttribute="trailing" secondItem="4hL-SK-QAV" secondAttribute="trailing" constant="10" id="wnp-ag-8j4"/>
                                     <constraint firstItem="B0k-ck-dXu" firstAttribute="top" secondItem="0mo-YA-lXI" secondAttribute="bottom" constant="4" id="xu4-hT-oIf"/>
-                                    <constraint firstItem="B0k-ck-dXu" firstAttribute="width" secondItem="0mo-YA-lXI" secondAttribute="width" id="yNw-uq-5ln"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Lp3-NO-Jwi">
-                                <rect key="frame" x="0.0" y="207.5" width="375" height="459.5"/>
+                                <rect key="frame" x="0.0" y="268.33333333333326" width="414" height="467.66666666666674"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="qE7-QZ-k5t"/>
@@ -83,7 +98,7 @@
                                 </connections>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose image" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Q4-0I-2Mt">
-                                <rect key="frame" x="8" y="103" width="169" height="21"/>
+                                <rect key="frame" x="8" y="133.33333333333334" width="230" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.22352941176470589" green="0.51372549019607838" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -104,7 +119,7 @@
                             <constraint firstItem="7Q4-0I-2Mt" firstAttribute="leading" secondItem="AOz-9w-Wzd" secondAttribute="leading" id="myH-3K-QxM"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Lp3-NO-Jwi" secondAttribute="trailing" id="n1J-HK-iuc"/>
                             <constraint firstItem="kLE-IN-O7S" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="8" id="p4x-e8-taE"/>
-                            <constraint firstItem="kLE-IN-O7S" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.5" id="zOT-X6-ksF"/>
+                            <constraint firstItem="kLE-IN-O7S" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.4" id="zOT-X6-ksF"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -113,6 +128,7 @@
                         <outlet property="grayscaleButton" destination="g81-8b-nQq" id="Pfn-uc-CFR"/>
                         <outlet property="imageView" destination="AOz-9w-Wzd" id="uOb-8D-dLX"/>
                         <outlet property="invertButton" destination="B0k-ck-dXu" id="bfp-wH-192"/>
+                        <outlet property="leftMirrorButton" destination="0SG-fr-5Ip" id="dBm-LW-ePP"/>
                         <outlet property="mirrorButton" destination="0mo-YA-lXI" id="Cte-Nk-XpI"/>
                         <outlet property="rotateButton" destination="4hL-SK-QAV" id="iAl-KH-2xC"/>
                         <outlet property="tableView" destination="Lp3-NO-Jwi" id="CJq-fx-oJt"/>
@@ -120,7 +136,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="136.80000000000001" y="133.5832083958021"/>
+            <point key="canvasLocation" x="86" y="130"/>
         </scene>
     </scenes>
 </document>

@@ -19,6 +19,7 @@ class ImageProcessingViewController: UIViewController {
     @IBOutlet private weak var grayscaleButton: ProcessingButton!
     @IBOutlet private weak var mirrorButton: ProcessingButton!
     @IBOutlet private weak var invertButton: ProcessingButton!
+    @IBOutlet private weak var leftMirrorButton: ProcessingButton!
 
     @IBAction private func processImage(_ sender: ProcessingButton) {
         viewModel.modifyImage(modification: sender.modification,
@@ -52,6 +53,7 @@ class ImageProcessingViewController: UIViewController {
         grayscaleButton.modification = .grayscale
         mirrorButton.modification = .mirror
         invertButton.modification = .invert
+        leftMirrorButton.modification = .leftSideMirror
     }
 
     private func openImagePicker(_ source: UIImagePickerControllerSourceType) {

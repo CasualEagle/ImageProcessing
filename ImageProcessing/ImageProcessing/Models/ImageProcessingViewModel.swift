@@ -28,6 +28,9 @@ struct ImageProcessingViewModel {
             newImage = image?.imageRotatedByDegrees(degrees: 90)
         case .invert:
             newImage = image?.invert
+        case .leftSideMirror:
+            print("leftside")
+            newImage = image?.invert
         }
         guard let modifiedImage = newImage else {
             completion(false)

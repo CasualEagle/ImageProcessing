@@ -13,4 +13,5 @@ enum Modification: String {
     case grayscale = "Grayscale"
     case mirror = "Mirror"
     case invert = "Invert Colors"
+    case leftSideMirror = "Mirror left side"
 }

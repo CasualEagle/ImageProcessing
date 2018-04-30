@@ -51,6 +51,17 @@ extension UIImage {
         }
     }
 
+    var mirrorLeftPart: UIImage? {
+        UIGraphicsBeginImageContext(size)
+        let bitmap = UIGraphicsGetCurrentContext()
+
+        for i in 0..<bitmap!.height {
+            for j in 0..<bitmap!.width {
+                
+            }
+        }
+    }
+
     public func imageRotatedByDegrees(degrees: CGFloat) -> UIImage? {
 
         let rotatedViewBox = UIView(frame: CGRect(origin: .zero, size: size))
