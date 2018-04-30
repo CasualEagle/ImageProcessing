@@ -15,6 +15,7 @@ class ImageProcessingViewController: UIViewController {
     @IBOutlet private weak var chooseImageLabel: UILabel!
     @IBOutlet private weak var imageView: UIImageView!
     @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet private weak var progressView: UIProgressView!
     @IBOutlet private weak var rotateButton: ProcessingButton!
     @IBOutlet private weak var grayscaleButton: ProcessingButton!
     @IBOutlet private weak var mirrorButton: ProcessingButton!
@@ -33,7 +34,7 @@ class ImageProcessingViewController: UIViewController {
     
 
     var viewModel = ImageProcessingViewModel()
-    var networkService = NetworkService()
+    var networkService = ImageLoader()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,6 +48,7 @@ class ImageProcessingViewController: UIViewController {
         let gesture = UITapGestureRecognizer(target: self, action: #selector(chooseImage))
         imageView.addGestureRecognizer(gesture)
         setupButtons()
+        networkService.imageLoaderDelegate = self
     }
 
     private func setupButtons() {
@@ -108,8 +110,11 @@ class ImageProcessingViewController: UIViewController {
         guard let string = string else {
             return
         }
-        self.networkService.downloadImage(from: string) { image in
-            self.imageView.image = image
+        progressView.isHidden = false
+        chooseImageLabel.isHidden = false
+        imageView.image = nil
+        self.networkService.downloadImage(from: string) { [weak self] image in
+            self?.imageView.image = image
         }
     }
 
@@ -188,4 +193,19 @@ extension ImageProcessingViewController: UITableViewDelegate {
             }
         }
     }
+}
+
+extension ImageProcessingViewController: ImageLoaderDelegate {
+    func showProgress(_ progress: Float) {
+        chooseImageLabel.text = "\(Int(progress * 100))%"
+        progressView.progress = progress
+    }
+
+    func updateImage(_ image: UIImage) {
+        chooseImageLabel.isHidden = true
+        progressView.isHidden = true
+        imageView.image = image
+    }
+
+
 }
