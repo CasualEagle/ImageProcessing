@@ -20,6 +20,7 @@ class ImageProcessingViewController: UIViewController {
     @IBOutlet private weak var grayscaleButton: ProcessingButton!
     @IBOutlet private weak var mirrorButton: ProcessingButton!
     @IBOutlet private weak var invertButton: ProcessingButton!
+    @IBOutlet private weak var exifButton: UIButton!
 
     @IBAction private func processImage(_ sender: ProcessingButton) {
         viewModel.modifyImage(modification: sender.modification,
@@ -30,10 +31,14 @@ class ImageProcessingViewController: UIViewController {
             }
         }
     }
+    @IBAction func showEXIF(_ sender: UIButton) {
+        exifService.getExifData(from: imageView.image)
+    }
 
     private lazy var processButtons = [rotateButton, grayscaleButton, mirrorButton, invertButton]
     var viewModel = ImageProcessingViewModel()
     var networkService = ImageLoader()
+    var exifService = EXIFService()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -121,6 +126,7 @@ class ImageProcessingViewController: UIViewController {
 
     private func savePhotoToLibrary(at indexPath: IndexPath) {
         let image = viewModel.images[indexPath.row].image
+        exifService.changeCameraToApp(for: image)
         UIImageWriteToSavedPhotosAlbum(image,
                                        self,
                                        #selector(image(_:didFinishSavingWithError:contextInfo:)),

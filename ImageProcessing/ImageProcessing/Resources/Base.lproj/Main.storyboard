@@ -75,7 +75,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Lp3-NO-Jwi">
-                                <rect key="frame" x="0.0" y="207.5" width="375" height="459.5"/>
+                                <rect key="frame" x="0.0" y="247" width="375" height="420"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="qE7-QZ-k5t"/>
@@ -91,22 +91,31 @@
                             <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="LJn-4u-Nth">
                                 <rect key="frame" x="12" y="132" width="161.5" height="2"/>
                             </progressView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rxZ-cJ-m0Y">
+                                <rect key="frame" x="8" y="205" width="31" height="30"/>
+                                <state key="normal" title="EXIF"/>
+                                <connections>
+                                    <action selector="showEXIF:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tno-ab-jVI"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="LJn-4u-Nth" firstAttribute="top" secondItem="7Q4-0I-2Mt" secondAttribute="bottom" constant="8" id="G5g-Od-Lm5"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Lp3-NO-Jwi" secondAttribute="bottom" id="JsU-ZW-Z2m"/>
                             <constraint firstItem="AOz-9w-Wzd" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="KZb-K0-MXp"/>
+                            <constraint firstItem="rxZ-cJ-m0Y" firstAttribute="top" secondItem="AOz-9w-Wzd" secondAttribute="bottom" constant="7.5" id="MYv-t1-iJn"/>
                             <constraint firstItem="LJn-4u-Nth" firstAttribute="trailing" secondItem="AOz-9w-Wzd" secondAttribute="trailing" constant="-4" id="NEo-nG-HwH"/>
                             <constraint firstItem="AOz-9w-Wzd" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="8" id="PAq-RZ-Hxj"/>
                             <constraint firstItem="kLE-IN-O7S" firstAttribute="leading" secondItem="AOz-9w-Wzd" secondAttribute="trailing" constant="2" id="V6v-nt-Eaz"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="kLE-IN-O7S" secondAttribute="trailing" constant="8" id="X7s-ST-9AC"/>
                             <constraint firstItem="LJn-4u-Nth" firstAttribute="leading" secondItem="AOz-9w-Wzd" secondAttribute="leading" constant="4" id="XWC-f7-wkj"/>
-                            <constraint firstItem="Lp3-NO-Jwi" firstAttribute="top" secondItem="AOz-9w-Wzd" secondAttribute="bottom" constant="10" id="a6Q-1T-bHZ"/>
                             <constraint firstItem="7Q4-0I-2Mt" firstAttribute="centerY" secondItem="AOz-9w-Wzd" secondAttribute="centerY" id="aWR-Sx-41t"/>
                             <constraint firstItem="kLE-IN-O7S" firstAttribute="height" secondItem="AOz-9w-Wzd" secondAttribute="height" id="cGT-3B-b2f"/>
                             <constraint firstItem="Lp3-NO-Jwi" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="fal-H2-vJX"/>
                             <constraint firstItem="7Q4-0I-2Mt" firstAttribute="trailing" secondItem="AOz-9w-Wzd" secondAttribute="trailing" id="haF-uT-yzc"/>
+                            <constraint firstItem="Lp3-NO-Jwi" firstAttribute="top" secondItem="rxZ-cJ-m0Y" secondAttribute="bottom" constant="12" id="iH1-WH-siK"/>
+                            <constraint firstItem="rxZ-cJ-m0Y" firstAttribute="leading" secondItem="AOz-9w-Wzd" secondAttribute="leading" id="kOZ-vK-a6G"/>
                             <constraint firstItem="7Q4-0I-2Mt" firstAttribute="leading" secondItem="AOz-9w-Wzd" secondAttribute="leading" id="myH-3K-QxM"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Lp3-NO-Jwi" secondAttribute="trailing" id="n1J-HK-iuc"/>
                             <constraint firstItem="kLE-IN-O7S" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="8" id="p4x-e8-taE"/>
@@ -116,6 +125,7 @@
                     </view>
                     <connections>
                         <outlet property="chooseImageLabel" destination="7Q4-0I-2Mt" id="1eI-g0-g2K"/>
+                        <outlet property="exifButton" destination="rxZ-cJ-m0Y" id="3CO-eS-a5Q"/>
                         <outlet property="grayscaleButton" destination="g81-8b-nQq" id="Pfn-uc-CFR"/>
                         <outlet property="imageView" destination="AOz-9w-Wzd" id="uOb-8D-dLX"/>
                         <outlet property="invertButton" destination="B0k-ck-dXu" id="bfp-wH-192"/>
