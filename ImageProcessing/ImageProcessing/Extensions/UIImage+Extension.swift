@@ -11,7 +11,7 @@ import UIKit
 extension UIImage {
     
     var grayscale: UIImage? {
-        let context = CIContext(options: nil)
+        let context = CIContext()
         let currentFilter = CIFilter(name: "CIPhotoEffectMono")
         currentFilter?.setValue(CIImage(image: self), forKey: kCIInputImageKey)
 
@@ -25,7 +25,7 @@ extension UIImage {
     }
 
     var invert: UIImage? {
-        let context = CIContext(options: nil)
+        let context = CIContext()
         let currentFilter = CIFilter(name: "CIColorInvert")
         currentFilter?.setValue(CIImage(image: self), forKey: kCIInputImageKey)
 

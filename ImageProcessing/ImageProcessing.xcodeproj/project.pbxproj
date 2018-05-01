@@ -67,12 +67,12 @@
 			path = CustomElements;
 			sourceTree = "<group>";
 		};
-		005FF79D2095FF1600218EB0 /* Services */ = {
+		005FF79D2095FF1600218EB0 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
 				005FF79B2095FF1200218EB0 /* ImageLoader.swift */,
 			);
-			path = Services;
+			path = Networking;
 			sourceTree = "<group>";
 		};
 		FE437D0D209333D900C2A305 = {
@@ -98,7 +98,7 @@
 				FE437D3920947C6800C2A305 /* Models */,
 				FE437D3F20947F8B00C2A305 /* Moduls */,
 				005FF79A2095FDBA00218EB0 /* CustomElements */,
-				005FF79D2095FF1600218EB0 /* Services */,
+				005FF79D2095FF1600218EB0 /* Networking */,
 				FE437D322093669800C2A305 /* Extensions */,
 				FE437D2B2093348900C2A305 /* Resources */,
 			);
