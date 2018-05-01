@@ -18,11 +18,8 @@ class ImageLoader: NSObject {
     private(set) var downloadTask: URLSessionDownloadTask?
     weak var imageLoaderDelegate: ImageLoaderDelegate?
 
-    func downloadImage(from url: String, completion: @escaping (UIImage?) -> Void) {
+    func downloadImage(from url: URL) {
         downloadTask?.cancel()
-        guard let url = URL(string: url) else {
-            return
-        }
         let session = URLSession(configuration: .default, delegate: self, delegateQueue: nil)
         downloadTask = session.downloadTask(with: url)
         downloadTask?.resume()

@@ -107,16 +107,21 @@ class ImageProcessingViewController: UIViewController {
     }
 
     private func downloadImage(_ string: String?) {
-        guard let string = string else {
-            return
+        guard let string = string,
+            let url = URL(string: string) else {
+                let alert = UIAlertController(title: "Error",
+                                              message: "Wrong url",
+                                              preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: Constants.Title.ok,
+                                              style: .default))
+                present(alert, animated: true)
+                return
         }
         progressView.isHidden = false
         chooseImageLabel.isHidden = false
         imageView.image = nil
         changeButtonsEnableMode(to: false)
-        self.networkService.downloadImage(from: string) { [weak self] image in
-            self?.imageView.image = image
-        }
+        networkService.downloadImage(from: url)
     }
 
     private func savePhotoToLibrary(at indexPath: IndexPath) {
