@@ -29,8 +29,7 @@ struct ImageProcessingViewModel {
         case .invert:
             newImage = image?.invert
         case .leftSideMirror:
-            print("leftside")
-            newImage = image?.invert
+            newImage = image?.mirrorLeftPart
         }
         guard let modifiedImage = newImage else {
             completion(false)

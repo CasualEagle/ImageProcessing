@@ -52,14 +52,17 @@ extension UIImage {
     }
 
     var mirrorLeftPart: UIImage? {
-        UIGraphicsBeginImageContext(size)
-        let bitmap = UIGraphicsGetCurrentContext()
-
-        for i in 0..<bitmap!.height {
-            for j in 0..<bitmap!.width {
-                
+        guard let rgba = RGBA(image: self) else {
+            return nil
+        }
+        for y in 0..<rgba.height {
+            for x in (rgba.width/2)..<rgba.width {
+                let index = y * rgba.width + x
+                let indexOfMirroredPixel = y * rgba.width + rgba.width - x
+                rgba.pixels[index] = rgba.pixels[indexOfMirroredPixel]
             }
         }
+        return rgba.toUIImage()
     }
 
     public func imageRotatedByDegrees(degrees: CGFloat) -> UIImage? {
@@ -68,14 +71,11 @@ extension UIImage {
         rotatedViewBox.transform = CGAffineTransform(rotationAngle: degrees.radians)
         let rotatedSize = rotatedViewBox.frame.size
 
-        // Create the bitmap context
         UIGraphicsBeginImageContext(rotatedSize)
         let bitmap = UIGraphicsGetCurrentContext()
 
-        // Move the origin to the middle of the image so we will rotate and scale around the center.
         bitmap?.translateBy(x: rotatedSize.width / 2.0, y: rotatedSize.height / 2.0)
 
-        // Rotate the image context
         bitmap?.rotate(by: degrees.radians)
 
         draw(in: CGRect(x: -size.width / 2,

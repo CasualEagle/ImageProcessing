@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		002800EC2098D44700B8EA02 /* Pixel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002800EB2098D44700B8EA02 /* Pixel.swift */; };
+		002800EE2098D48400B8EA02 /* RGBA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002800ED2098D48400B8EA02 /* RGBA.swift */; };
 		005FF7972095CC1D00218EB0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005FF7962095CC1D00218EB0 /* Constants.swift */; };
 		005FF7992095D29D00218EB0 /* ProcessingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005FF7982095D29D00218EB0 /* ProcessingButton.swift */; };
 		FE437D1A209333D900C2A305 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE437D19209333D900C2A305 /* AppDelegate.swift */; };
@@ -26,6 +28,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		002800EB2098D44700B8EA02 /* Pixel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pixel.swift; sourceTree = "<group>"; };
+		002800ED2098D48400B8EA02 /* RGBA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBA.swift; sourceTree = "<group>"; };
 		005FF7962095CC1D00218EB0 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		005FF7982095D29D00218EB0 /* ProcessingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessingButton.swift; sourceTree = "<group>"; };
 		FE437D16209333D900C2A305 /* ImageProcessing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageProcessing.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -131,6 +135,8 @@
 			children = (
 				FE437D3720947C6400C2A305 /* ProcessedImage.swift */,
 				FE437D462094980000C2A305 /* ImageProcessingViewModel.swift */,
+				002800EB2098D44700B8EA02 /* Pixel.swift */,
+				002800ED2098D48400B8EA02 /* RGBA.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -229,6 +235,7 @@
 				005FF7972095CC1D00218EB0 /* Constants.swift in Sources */,
 				FE437D2F2093540B00C2A305 /* UIViewController+Extension.swift in Sources */,
 				FE437D312093573200C2A305 /* AlertOption.swift in Sources */,
+				002800EC2098D44700B8EA02 /* Pixel.swift in Sources */,
 				FE437D3820947C6400C2A305 /* ProcessedImage.swift in Sources */,
 				FE437D362093675D00C2A305 /* UIImage+Extension.swift in Sources */,
 				FE437D472094980000C2A305 /* ImageProcessingViewModel.swift in Sources */,
@@ -237,6 +244,7 @@
 				FE437D2D2093378F00C2A305 /* ImageProcessingViewController.swift in Sources */,
 				005FF7992095D29D00218EB0 /* ProcessingButton.swift in Sources */,
 				FE437D41209490C400C2A305 /* Modification.swift in Sources */,
+				002800EE2098D48400B8EA02 /* RGBA.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
