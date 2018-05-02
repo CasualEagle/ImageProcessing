@@ -9,10 +9,11 @@
 /* Begin PBXBuildFile section */
 		002800E620987A5D00B8EA02 /* EXIF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002800E520987A5D00B8EA02 /* EXIF.swift */; };
 		002800E92098AC5500B8EA02 /* ExifDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002800E72098AC5500B8EA02 /* ExifDataViewController.swift */; };
-		002800EA2098AC5500B8EA02 /* ExifDataViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 002800E82098AC5500B8EA02 /* ExifDataViewController.xib */; };
 		005FF7972095CC1D00218EB0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005FF7962095CC1D00218EB0 /* Constants.swift */; };
 		005FF7992095D29D00218EB0 /* ProcessingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005FF7982095D29D00218EB0 /* ProcessingButton.swift */; };
 		005FF79C2095FF1200218EB0 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005FF79B2095FF1200218EB0 /* ImageLoader.swift */; };
+		00D0D44F2099D22C00355099 /* ExifDataViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00D0D44E2099D22C00355099 /* ExifDataViewController.xib */; };
+		00D0D4512099DD1700355099 /* SubtitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D0D4502099DD1700355099 /* SubtitleTableViewCell.swift */; };
 		FE437D1A209333D900C2A305 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE437D19209333D900C2A305 /* AppDelegate.swift */; };
 		FE437D1F209333D900C2A305 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE437D1D209333D900C2A305 /* Main.storyboard */; };
 		FE437D21209333DB00C2A305 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE437D20209333DB00C2A305 /* Assets.xcassets */; };
@@ -32,10 +33,11 @@
 /* Begin PBXFileReference section */
 		002800E520987A5D00B8EA02 /* EXIF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EXIF.swift; sourceTree = "<group>"; };
 		002800E72098AC5500B8EA02 /* ExifDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExifDataViewController.swift; sourceTree = "<group>"; };
-		002800E82098AC5500B8EA02 /* ExifDataViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExifDataViewController.xib; sourceTree = "<group>"; };
 		005FF7962095CC1D00218EB0 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		005FF7982095D29D00218EB0 /* ProcessingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessingButton.swift; sourceTree = "<group>"; };
 		005FF79B2095FF1200218EB0 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
+		00D0D44E2099D22C00355099 /* ExifDataViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExifDataViewController.xib; sourceTree = "<group>"; };
+		00D0D4502099DD1700355099 /* SubtitleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubtitleTableViewCell.swift; sourceTree = "<group>"; };
 		FE437D16209333D900C2A305 /* ImageProcessing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageProcessing.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE437D19209333D900C2A305 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FE437D1E209333D900C2A305 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -148,7 +150,7 @@
 			children = (
 				FE437D2C2093378F00C2A305 /* ImageProcessingViewController.swift */,
 				002800E72098AC5500B8EA02 /* ExifDataViewController.swift */,
-				002800E82098AC5500B8EA02 /* ExifDataViewController.xib */,
+				00D0D44E2099D22C00355099 /* ExifDataViewController.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -168,6 +170,7 @@
 			children = (
 				FE437D3A20947DFE00C2A305 /* ImageProcessingTableViewCell.swift */,
 				FE437D3B20947DFE00C2A305 /* ImageProcessingTableViewCell.xib */,
+				00D0D4502099DD1700355099 /* SubtitleTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -241,7 +244,7 @@
 			files = (
 				FE437D3D20947DFE00C2A305 /* ImageProcessingTableViewCell.xib in Resources */,
 				FE437D24209333DB00C2A305 /* LaunchScreen.storyboard in Resources */,
-				002800EA2098AC5500B8EA02 /* ExifDataViewController.xib in Resources */,
+				00D0D44F2099D22C00355099 /* ExifDataViewController.xib in Resources */,
 				FE437D21209333DB00C2A305 /* Assets.xcassets in Resources */,
 				FE437D1F209333D900C2A305 /* Main.storyboard in Resources */,
 			);
@@ -259,6 +262,7 @@
 				FE437D2F2093540B00C2A305 /* UIViewController+Extension.swift in Sources */,
 				FE437D312093573200C2A305 /* AlertOption.swift in Sources */,
 				FE437D3820947C6400C2A305 /* ProcessedImage.swift in Sources */,
+				00D0D4512099DD1700355099 /* SubtitleTableViewCell.swift in Sources */,
 				FE437D362093675D00C2A305 /* UIImage+Extension.swift in Sources */,
 				FE437D472094980000C2A305 /* ImageProcessingViewModel.swift in Sources */,
 				002800E620987A5D00B8EA02 /* EXIF.swift in Sources */,

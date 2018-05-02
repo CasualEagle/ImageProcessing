@@ -32,7 +32,12 @@ class ImageProcessingViewController: UIViewController {
         }
     }
     @IBAction func showEXIF(_ sender: UIButton) {
-        exifService.getExifData(from: imageView.image)
+        let exifVC = ExifDataViewController(nibName: "ExifDataViewController", bundle: nil)
+        guard let exifDictionary = exifService.getExifData(from: imageView.image) else {
+            return
+        }
+        exifVC.exifDictionary = exifDictionary
+        navigationController?.pushViewController(exifVC, animated: true)
     }
 
     private lazy var processButtons = [rotateButton, grayscaleButton, mirrorButton, invertButton]

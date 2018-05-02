@@ -9,9 +9,8 @@
 import ImageIO
 import UIKit
 
+typealias EXIFDictionary = [CFString: Any]
 class EXIFService {
-
-    typealias EXIFDictionsry = [CFString: Any]
 
     func changeCameraToApp(for image: UIImage?) {
         guard let image = image else {
@@ -28,7 +27,7 @@ class EXIFService {
         
     }
 
-    func getExifData(from image: UIImage?) -> EXIFDictionsry? {
+    func getExifData(from image: UIImage?) -> EXIFDictionary? {
         guard let image = image else {
             return nil
         }
@@ -44,7 +43,7 @@ class EXIFService {
         guard let imageProperties = CGImageSourceCopyPropertiesAtIndex(cgImageSource, 0, nil) as NSDictionary? else {
             return nil
         }
-        guard let exifDictionary = imageProperties[kCGImagePropertyExifDictionary] as? EXIFDictionsry else {
+        guard let exifDictionary = imageProperties[kCGImagePropertyExifDictionary] as? EXIFDictionary else {
             return nil
         }
         print(exifDictionary)

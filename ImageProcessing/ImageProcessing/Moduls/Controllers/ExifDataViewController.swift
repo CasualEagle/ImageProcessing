@@ -10,26 +10,37 @@ import UIKit
 
 class ExifDataViewController: UIViewController {
 
+    @IBOutlet private weak var tableView: UITableView!
+    var exifDictionary: EXIFDictionary = [:]
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        title = "EXIF"
+        tableView.register(SubtitleTableViewCell.self, forCellReuseIdentifier: "cell")
+
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    private func getKeys(for dictionary: EXIFDictionary) -> [CFString] {
+        let keys = Array(dictionary.keys)
+        print(Array(dictionary.keys))
+        let value = dictionary[keys[0]]
+        print("\(String(describing: value))")
+        return keys
     }
-    
+}
 
-    /*
-    // MARK: - Navigation
+extension ExifDataViewController: UITableViewDataSource {
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return exifDictionary.count
     }
-    */
 
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let keys = getKeys(for: exifDictionary)
+        cell.textLabel?.text = keys[indexPath.row] as String
+        cell.detailTextLabel?.text = String(describing: exifDictionary[keys[indexPath.row]] ?? "No data") 
+        return cell
+    }
 }
