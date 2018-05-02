@@ -43,7 +43,7 @@ class ImageProcessingViewController: UIViewController {
     private lazy var processButtons = [rotateButton, grayscaleButton, mirrorButton, invertButton]
     var viewModel = ImageProcessingViewModel()
     var networkService = ImageLoader()
-    var exifService = EXIFService()
+    var exifService = ExifService()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,7 +53,6 @@ class ImageProcessingViewController: UIViewController {
         tableView.register(nib,
                            forCellReuseIdentifier: ImageProcessingTableViewCell.reuseID)
 
-        imageView.isUserInteractionEnabled = true
         let gesture = UITapGestureRecognizer(target: self, action: #selector(chooseImage))
         imageView.addGestureRecognizer(gesture)
         setupButtons()

@@ -1,5 +1,5 @@
 //
-//  EXIF.swift
+//  ExifService.swift
 //  ImageProcessing
 //
 //  Created by Artem Orlov on 01/05/2018.
@@ -9,9 +9,8 @@
 import ImageIO
 import UIKit
 
-typealias EXIFDictionary = [CFString: Any]
-class EXIFService {
-
+typealias ExifDictionary = [CFString: Any]
+class ExifService {
     func changeCameraToApp(for image: UIImage?) {
         guard let image = image else {
             return
@@ -27,7 +26,7 @@ class EXIFService {
         
     }
 
-    func getExifData(from image: UIImage?) -> EXIFDictionary? {
+    func getExifData(from image: UIImage?) -> ExifDictionary? {
         guard let image = image else {
             return nil
         }
@@ -43,7 +42,7 @@ class EXIFService {
         guard let imageProperties = CGImageSourceCopyPropertiesAtIndex(cgImageSource, 0, nil) as NSDictionary? else {
             return nil
         }
-        guard let exifDictionary = imageProperties[kCGImagePropertyExifDictionary] as? EXIFDictionary else {
+        guard let exifDictionary = imageProperties[kCGImagePropertyExifDictionary] as? ExifDictionary else {
             return nil
         }
         print(exifDictionary)

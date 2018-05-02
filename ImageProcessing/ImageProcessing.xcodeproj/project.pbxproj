@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		002800E620987A5D00B8EA02 /* EXIF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002800E520987A5D00B8EA02 /* EXIF.swift */; };
+		002800E620987A5D00B8EA02 /* ExifService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002800E520987A5D00B8EA02 /* ExifService.swift */; };
 		002800E92098AC5500B8EA02 /* ExifDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002800E72098AC5500B8EA02 /* ExifDataViewController.swift */; };
 		005FF7972095CC1D00218EB0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005FF7962095CC1D00218EB0 /* Constants.swift */; };
 		005FF7992095D29D00218EB0 /* ProcessingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005FF7982095D29D00218EB0 /* ProcessingButton.swift */; };
@@ -31,7 +31,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		002800E520987A5D00B8EA02 /* EXIF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EXIF.swift; sourceTree = "<group>"; };
+		002800E520987A5D00B8EA02 /* ExifService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExifService.swift; sourceTree = "<group>"; };
 		002800E72098AC5500B8EA02 /* ExifDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExifDataViewController.swift; sourceTree = "<group>"; };
 		005FF7962095CC1D00218EB0 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		005FF7982095D29D00218EB0 /* ProcessingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessingButton.swift; sourceTree = "<group>"; };
@@ -75,12 +75,13 @@
 			path = CustomElements;
 			sourceTree = "<group>";
 		};
-		005FF79D2095FF1600218EB0 /* Networking */ = {
+		005FF79D2095FF1600218EB0 /* Services */ = {
 			isa = PBXGroup;
 			children = (
 				005FF79B2095FF1200218EB0 /* ImageLoader.swift */,
+				002800E520987A5D00B8EA02 /* ExifService.swift */,
 			);
-			path = Networking;
+			path = Services;
 			sourceTree = "<group>";
 		};
 		FE437D0D209333D900C2A305 = {
@@ -106,7 +107,7 @@
 				FE437D3920947C6800C2A305 /* Models */,
 				FE437D3F20947F8B00C2A305 /* Moduls */,
 				005FF79A2095FDBA00218EB0 /* CustomElements */,
-				005FF79D2095FF1600218EB0 /* Networking */,
+				005FF79D2095FF1600218EB0 /* Services */,
 				FE437D322093669800C2A305 /* Extensions */,
 				FE437D2B2093348900C2A305 /* Resources */,
 			);
@@ -159,7 +160,6 @@
 			isa = PBXGroup;
 			children = (
 				FE437D3720947C6400C2A305 /* ProcessedImage.swift */,
-				002800E520987A5D00B8EA02 /* EXIF.swift */,
 				FE437D462094980000C2A305 /* ImageProcessingViewModel.swift */,
 			);
 			path = Models;
@@ -265,7 +265,7 @@
 				00D0D4512099DD1700355099 /* SubtitleTableViewCell.swift in Sources */,
 				FE437D362093675D00C2A305 /* UIImage+Extension.swift in Sources */,
 				FE437D472094980000C2A305 /* ImageProcessingViewModel.swift in Sources */,
-				002800E620987A5D00B8EA02 /* EXIF.swift in Sources */,
+				002800E620987A5D00B8EA02 /* ExifService.swift in Sources */,
 				FE437D452094954E00C2A305 /* CGFloat+Extension.swift in Sources */,
 				FE437D1A209333D900C2A305 /* AppDelegate.swift in Sources */,
 				FE437D2D2093378F00C2A305 /* ImageProcessingViewController.swift in Sources */,

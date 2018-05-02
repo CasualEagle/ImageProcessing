@@ -11,22 +11,14 @@ import UIKit
 class ExifDataViewController: UIViewController {
 
     @IBOutlet private weak var tableView: UITableView!
-    var exifDictionary: EXIFDictionary = [:]
+    var exifDictionary: ExifDictionary = [:]
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         title = "EXIF"
         tableView.register(SubtitleTableViewCell.self, forCellReuseIdentifier: "cell")
-
-    }
-
-    private func getKeys(for dictionary: EXIFDictionary) -> [CFString] {
-        let keys = Array(dictionary.keys)
-        print(Array(dictionary.keys))
-        let value = dictionary[keys[0]]
-        print("\(String(describing: value))")
-        return keys
+        tableView.tableFooterView = UIView(frame: .zero)
     }
 }
 
@@ -38,9 +30,9 @@ extension ExifDataViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        let keys = getKeys(for: exifDictionary)
-        cell.textLabel?.text = keys[indexPath.row] as String
-        cell.detailTextLabel?.text = String(describing: exifDictionary[keys[indexPath.row]] ?? "No data") 
+        let key = Array(exifDictionary.keys)[indexPath.row]
+        cell.textLabel?.text = key as String
+        cell.detailTextLabel?.text = String(describing: exifDictionary[key] ?? "No data")
         return cell
     }
 }
