@@ -23,12 +23,28 @@ class ImageProcessingViewController: UIViewController {
     @IBOutlet private weak var leftMirrorButton: ProcessingButton!
 
     @IBAction private func processImage(_ sender: ProcessingButton) {
-        viewModel.modifyImage(modification: sender.modification,
-                              image: imageView.image)
-        { [weak self] success in
-            if success {
-                self?.tableView.reloadData()
+        guard let image = imageView.image else {
+            return
+        }
+        DispatchQueue.global().async {
+            self.viewModel.modifyImage(modification: sender.modification,
+                                  image: image)
+            { [weak self] index, mode in
+
+                guard let index = index else {
+                    return
+                }
+                switch mode {
+                case 1:
+                    self?.tableView.insertRows(at: [IndexPath(row: index, section: 0)], with: .fade)
+                case 2:
+                    self?.tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .fade)
+                default:
+                    break
+                }
+
             }
+
         }
     }
 
@@ -204,7 +220,7 @@ extension ImageProcessingViewController: UITableViewDelegate {
                 self?.savePhotoToLibrary(at: indexPath)
             case .delete:
                 self?.viewModel.removeObject(at: indexPath)
-                tableView.reloadData()
+                tableView.deleteRows(at: [indexPath], with: .fade)
             case .useAsPrimary:
                 self?.imageView.image = self?.viewModel.images[indexPath.row].image
             default:

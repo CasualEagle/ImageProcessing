@@ -65,18 +65,16 @@ extension UIImage {
         return rgba.toUIImage()
     }
 
-    public func imageRotatedByDegrees(degrees: CGFloat) -> UIImage? {
+    var rotatedImage: UIImage? {
 
-        let rotatedViewBox = UIView(frame: CGRect(origin: .zero, size: size))
-        rotatedViewBox.transform = CGAffineTransform(rotationAngle: degrees.radians)
-        let rotatedSize = rotatedViewBox.frame.size
+        let rotatedSize = CGSize(width: size.height, height: size.width)
 
         UIGraphicsBeginImageContext(rotatedSize)
         let bitmap = UIGraphicsGetCurrentContext()
 
         bitmap?.translateBy(x: rotatedSize.width / 2.0, y: rotatedSize.height / 2.0)
 
-        bitmap?.rotate(by: degrees.radians)
+        bitmap?.rotate(by: .pi / 2)
 
         draw(in: CGRect(x: -size.width / 2,
                         y: -size.height / 2,

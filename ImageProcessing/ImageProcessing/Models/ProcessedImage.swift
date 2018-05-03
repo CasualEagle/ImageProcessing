@@ -8,7 +8,12 @@
 
 import UIKit
 
-struct ProcessedImage {
+class ProcessedImage: NSObject {
     let modification: Modification
-    let image: UIImage
+    var image: UIImage
+
+    init(modification: Modification, image: UIImage) {
+        self.modification = modification
+        self.image = image
+    }
 }

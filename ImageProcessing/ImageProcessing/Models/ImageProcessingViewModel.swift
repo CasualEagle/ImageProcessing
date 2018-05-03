@@ -8,43 +8,48 @@
 
 import UIKit
 
-struct ImageProcessingViewModel {
+class ImageProcessingViewModel {
 
     private(set) var images: [ProcessedImage] = []
 
-    mutating func modifyImage(modification: Modification, image: UIImage?, completion: @escaping (Bool) -> ()) {
+    func modifyImage(modification: Modification, image: UIImage?, completion: @escaping (Int?,Int) -> ()) {
         guard image != nil else {
-            completion(false)
+            completion(nil, 0)
             return
         }
+        let processedImage = ProcessedImage(modification: modification, image: UIImage())
+        images.append(processedImage)
+        let index = images.index(of: processedImage)
+        DispatchQueue.main.async {
+            completion(index, 1)
+        }
+        sleep(5)
         let newImage: UIImage?
-
         switch modification {
         case .grayscale:
             newImage = image?.grayscale
         case .mirror:
             newImage = image?.mirror
         case .rotate:
-            newImage = image?.imageRotatedByDegrees(degrees: 90)
+            newImage = image?.rotatedImage
         case .invert:
             newImage = image?.invert
         case .leftSideMirror:
             newImage = image?.mirrorLeftPart
         }
         guard let modifiedImage = newImage else {
-            completion(false)
+            completion(nil, 0)
             return
         }
-        let processedImage = ProcessedImage(modification: modification,
-                                            image: modifiedImage)
-        images.insert(processedImage,
-                      at: 0)
+        processedImage.image = modifiedImage
+        print(processedImage)
+        let finalIndex = images.index(of: processedImage)
         DispatchQueue.main.async {
-            completion(true)
+            completion(finalIndex, 2)
         }
     }
 
-    mutating func removeObject(at indexPath: IndexPath) {
+    func removeObject(at indexPath: IndexPath) {
         images.remove(at: indexPath.row)
     }
 }
