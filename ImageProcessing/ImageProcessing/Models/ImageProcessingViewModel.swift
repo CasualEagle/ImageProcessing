@@ -17,8 +17,8 @@ struct ImageProcessingViewModel {
             completion(false)
             return
         }
-        
         let newImage: UIImage?
+
         switch modification {
         case .grayscale:
             newImage = image?.grayscale
@@ -35,8 +35,9 @@ struct ImageProcessingViewModel {
             completion(false)
             return
         }
-        images.insert(ProcessedImage(modification: modification,
-                                     image: modifiedImage),
+        let processedImage = ProcessedImage(modification: modification,
+                                            image: modifiedImage)
+        images.insert(processedImage,
                       at: 0)
         DispatchQueue.main.async {
             completion(true)

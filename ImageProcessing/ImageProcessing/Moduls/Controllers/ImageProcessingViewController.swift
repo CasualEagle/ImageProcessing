@@ -15,6 +15,7 @@ class ImageProcessingViewController: UIViewController {
     @IBOutlet private weak var chooseImageLabel: UILabel!
     @IBOutlet private weak var imageView: UIImageView!
     @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet private weak var progressView: UIProgressView!
     @IBOutlet private weak var rotateButton: ProcessingButton!
     @IBOutlet private weak var grayscaleButton: ProcessingButton!
     @IBOutlet private weak var mirrorButton: ProcessingButton!
@@ -31,9 +32,9 @@ class ImageProcessingViewController: UIViewController {
         }
     }
 
-    
-
+    private lazy var processButtons = [rotateButton, grayscaleButton, mirrorButton, invertButton, leftMirrorButton]
     var viewModel = ImageProcessingViewModel()
+    var networkService = ImageLoader()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,6 +48,7 @@ class ImageProcessingViewController: UIViewController {
         let gesture = UITapGestureRecognizer(target: self, action: #selector(chooseImage))
         imageView.addGestureRecognizer(gesture)
         setupButtons()
+        networkService.imageLoaderDelegate = self
     }
 
     private func setupButtons() {
@@ -54,6 +56,7 @@ class ImageProcessingViewController: UIViewController {
         mirrorButton.modification = .mirror
         invertButton.modification = .invert
         leftMirrorButton.modification = .leftSideMirror
+        changeButtonsEnableMode(to: false)
     }
 
     private func openImagePicker(_ source: UIImagePickerControllerSourceType) {
@@ -70,17 +73,57 @@ class ImageProcessingViewController: UIViewController {
         presentActionSheet(
             title: Constants.Title.chooseImage,
             message: nil,
-            options: .photoLibrary, .camera, .cancel) { [weak self] option in
+            options: .photoLibrary, .camera, .download, .cancel) { [weak self] option in
 
                 switch option {
                 case .camera:
                     self?.openImagePicker(.camera)
                 case .photoLibrary:
                     self?.openImagePicker(.photoLibrary)
+                case .download:
+                    self?.showDownloadAlert()
                 default:
                     break
                 }
         }
+    }
+
+    private func showDownloadAlert() {
+        let downloadAlert = UIAlertController(title: "Type download link",
+                                              message: nil,
+                                              preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: Constants.Title.cancel,
+                                   style: .cancel)
+        let downloadAction = UIAlertAction(title: "Download",
+                                           style: .default)
+        { _ in
+            let string = downloadAlert.textFields?.first?.text
+            self.downloadImage(string)
+        }
+        downloadAlert.addTextField { textField in
+            textField.placeholder = "Enter link here"
+        }
+        downloadAlert.addAction(cancelAction)
+        downloadAlert.addAction(downloadAction)
+        present(downloadAlert, animated: true)
+    }
+
+    private func downloadImage(_ string: String?) {
+        guard let string = string,
+            let url = URL(string: string) else {
+                let alert = UIAlertController(title: "Error",
+                                              message: "Wrong url",
+                                              preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: Constants.Title.ok,
+                                              style: .default))
+                present(alert, animated: true)
+                return
+        }
+        progressView.isHidden = false
+        chooseImageLabel.isHidden = false
+        imageView.image = nil
+        changeButtonsEnableMode(to: false)
+        networkService.downloadImage(from: url)
     }
 
     private func savePhotoToLibrary(at indexPath: IndexPath) {
@@ -108,6 +151,20 @@ class ImageProcessingViewController: UIViewController {
             present(alert, animated: true)
         }
     }
+
+    private func setNewImage(_ image: UIImage) {
+        imageView.image = image
+        chooseImageLabel.isHidden = true
+        progressView.isHidden = true
+        networkService.downloadTask?.cancel()
+        changeButtonsEnableMode(to: true)
+    }
+
+    private func changeButtonsEnableMode(to isEnable: Bool) {
+        processButtons.forEach {
+            $0?.isEnabled = isEnable
+        }
+    }
 }
 
 extension ImageProcessingViewController: UIImagePickerControllerDelegate {
@@ -116,9 +173,8 @@ extension ImageProcessingViewController: UIImagePickerControllerDelegate {
         guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else {
             return
         }
-        imageView.image = image
+        setNewImage(image)
         dismiss(animated: true, completion: nil)
-        chooseImageLabel.isHidden = true
     }
 
 }
@@ -137,8 +193,6 @@ extension ImageProcessingViewController: UITableViewDataSource {
         cell.configure(processedImage: viewModel.images[indexPath.row])
         return cell
     }
-
-
 }
 
 extension ImageProcessingViewController: UITableViewDelegate {
@@ -157,5 +211,16 @@ extension ImageProcessingViewController: UITableViewDelegate {
                 break
             }
         }
+    }
+}
+
+extension ImageProcessingViewController: ImageLoaderDelegate {
+    func showProgress(_ progress: Float) {
+        chooseImageLabel.text = "\(Int(progress * 100))%"
+        progressView.progress = progress
+    }
+
+    func updateImage(_ image: UIImage) {
+        setNewImage(image)
     }
 }

@@ -12,6 +12,7 @@ enum AlertOption: String {
     case cancel = "Cancel"
     case photoLibrary = "Photo Library"
     case camera = "Camera"
+    case download = "Download"
     case delete = "Delete"
     case save = "Save"
     case useAsPrimary = "Use as primary image"
