@@ -48,6 +48,7 @@ class ImageProcessingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        title = Constants.Title.imageProcessing.rawValue
         let nib = UINib(nibName: ImageProcessingTableViewCell.reuseID,
                         bundle: nil)
         tableView.register(nib,
@@ -68,7 +69,7 @@ class ImageProcessingViewController: UIViewController {
 
     @objc private func chooseImage() {
         presentActionSheet(
-            title: Constants.Title.chooseImage,
+            title: Constants.Button.chooseImage,
             message: nil,
             options: .photoLibrary, .camera, .download, .cancel) { [weak self] option in
 
@@ -99,7 +100,7 @@ class ImageProcessingViewController: UIViewController {
         let downloadAlert = UIAlertController(title: "Type download link",
                                               message: nil,
                                               preferredStyle: .alert)
-        let cancelAction = UIAlertAction(title: Constants.Title.cancel,
+        let cancelAction = UIAlertAction(title: Constants.Button.cancel,
                                    style: .cancel)
         let downloadAction = UIAlertAction(title: "Download",
                                            style: .default)
@@ -139,17 +140,17 @@ class ImageProcessingViewController: UIViewController {
 
     @objc private func image(_ image: UIImage, didFinishSavingWithError error: NSError?, contextInfo: UnsafeRawPointer) {
         if let error = error {
-            let alert = UIAlertController(title: Constants.Title.saveError,
+            let alert = UIAlertController(title: Constants.Message.saveError,
                                           message: error.localizedDescription,
                                           preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: Constants.Title.ok,
+            alert.addAction(UIAlertAction(title: Constants.Button.ok,
                                           style: .default))
             present(alert, animated: true)
         } else {
-            let alert = UIAlertController(title: Constants.Title.saved,
+            let alert = UIAlertController(title: Constants.Message.saved,
                                           message: Constants.Message.imageSaved,
                                           preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: Constants.Title.ok,
+            alert.addAction(UIAlertAction(title: Constants.Button.ok,
                                           style: .default))
             present(alert, animated: true)
         }

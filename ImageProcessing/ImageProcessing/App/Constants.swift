@@ -10,16 +10,20 @@ import Foundation
 
 enum Constants {
 
+    enum Title: String {
+        case imageProcessing = "Image Processing"
+        case exif = "EXIF"
+    }
     // TODO: Move to buttons
-    enum Title {
+    enum Button {
         static let chooseImage = "Choose image from:"
-        static let saveError = "Save error"
-        static let saved = "Saved!"
         static let ok = "OK"
         static let cancel = "Cancel"
     }
 
     enum Message {
+        static let saved = "Saved!"
+        static let saveError = "Save error"
         static let imageSaved = "The image has been saved to your photos."
     }
 }
