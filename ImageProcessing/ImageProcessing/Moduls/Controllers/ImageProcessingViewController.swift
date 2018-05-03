@@ -21,6 +21,7 @@ class ImageProcessingViewController: UIViewController {
     @IBOutlet private weak var mirrorButton: ProcessingButton!
     @IBOutlet private weak var invertButton: ProcessingButton!
     @IBOutlet private weak var leftMirrorButton: ProcessingButton!
+    @IBOutlet private weak var exifButton: UIButton!
 
     @IBAction private func processImage(_ sender: ProcessingButton) {
         guard let image = imageView.image else {
@@ -45,20 +46,29 @@ class ImageProcessingViewController: UIViewController {
             }
         }
     }
+    @IBAction func showEXIF(_ sender: UIButton) {
+        let exifVC = ExifDataViewController(nibName: "ExifDataViewController", bundle: nil)
+        guard let exifDictionary = exifService.getExifData(from: imageView.image) else {
+            return
+        }
+        exifVC.exifDictionary = exifDictionary
+        navigationController?.pushViewController(exifVC, animated: true)
+    }
 
     private lazy var processButtons = [rotateButton, grayscaleButton, mirrorButton, invertButton, leftMirrorButton]
     var viewModel = ImageProcessingViewModel()
     var networkService = ImageLoader()
+    var exifService = ExifService()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        title = Constants.Title.imageProcessing.rawValue
         let nib = UINib(nibName: ImageProcessingTableViewCell.reuseID,
                         bundle: nil)
         tableView.register(nib,
                            forCellReuseIdentifier: ImageProcessingTableViewCell.reuseID)
 
-        imageView.isUserInteractionEnabled = true
         let gesture = UITapGestureRecognizer(target: self, action: #selector(chooseImage))
         imageView.addGestureRecognizer(gesture)
         setupButtons()
@@ -86,7 +96,7 @@ class ImageProcessingViewController: UIViewController {
 
     @objc private func chooseImage() {
         presentActionSheet(
-            title: Constants.Title.chooseImage,
+            title: Constants.Button.chooseImage,
             message: nil,
             options: .photoLibrary, .camera, .download, .cancel) { [weak self] option in
 
@@ -107,7 +117,7 @@ class ImageProcessingViewController: UIViewController {
         let downloadAlert = UIAlertController(title: "Type download link",
                                               message: nil,
                                               preferredStyle: .alert)
-        let cancelAction = UIAlertAction(title: Constants.Title.cancel,
+        let cancelAction = UIAlertAction(title: Constants.Button.cancel,
                                    style: .cancel)
         let downloadAction = UIAlertAction(title: "Download",
                                            style: .default)
@@ -129,13 +139,14 @@ class ImageProcessingViewController: UIViewController {
                 let alert = UIAlertController(title: "Error",
                                               message: "Wrong url",
                                               preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: Constants.Title.ok,
+                alert.addAction(UIAlertAction(title: Constants.Button.ok,
                                               style: .default))
                 present(alert, animated: true)
                 return
         }
         progressView.isHidden = false
         chooseImageLabel.isHidden = false
+        exifButton.isHidden = true
         imageView.image = nil
         changeButtonsEnableMode(to: false)
         networkService.downloadImage(from: url)
@@ -143,6 +154,7 @@ class ImageProcessingViewController: UIViewController {
 
     private func savePhotoToLibrary(at indexPath: IndexPath) {
         let image = viewModel.images[indexPath.row].image
+        exifService.changeCameraToApp(for: image)
         UIImageWriteToSavedPhotosAlbum(image,
                                        self,
                                        #selector(image(_:didFinishSavingWithError:contextInfo:)),
@@ -151,17 +163,17 @@ class ImageProcessingViewController: UIViewController {
 
     @objc private func image(_ image: UIImage, didFinishSavingWithError error: NSError?, contextInfo: UnsafeRawPointer) {
         if let error = error {
-            let alert = UIAlertController(title: Constants.Title.saveError,
+            let alert = UIAlertController(title: Constants.Message.saveError,
                                           message: error.localizedDescription,
                                           preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: Constants.Title.ok,
+            alert.addAction(UIAlertAction(title: Constants.Button.ok,
                                           style: .default))
             present(alert, animated: true)
         } else {
-            let alert = UIAlertController(title: Constants.Title.saved,
+            let alert = UIAlertController(title: Constants.Message.saved,
                                           message: Constants.Message.imageSaved,
                                           preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: Constants.Title.ok,
+            alert.addAction(UIAlertAction(title: Constants.Button.ok,
                                           style: .default))
             present(alert, animated: true)
         }
@@ -171,6 +183,7 @@ class ImageProcessingViewController: UIViewController {
         imageView.image = image
         chooseImageLabel.isHidden = true
         progressView.isHidden = true
+        exifButton.isHidden = false
         networkService.downloadTask?.cancel()
         changeButtonsEnableMode(to: true)
     }
