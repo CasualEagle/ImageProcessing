@@ -35,10 +35,11 @@ struct ImageProcessingViewModel {
             completion(false)
             return
         }
-        let processedImage = ProcessedImage(modification: modification,
-                                            image: modifiedImage)
-        images.insert(processedImage,
-                      at: 0)
+
+//        ProcessedImage.insert(into: , image: modifiedImage, modification: modification.rawValue)
+//        let processedImage = ProcessedImage(modification: modification.rawValue,
+//                                            image: modifiedImage)
+
         DispatchQueue.main.async {
             completion(true)
         }

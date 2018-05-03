@@ -16,7 +16,7 @@ class ImageProcessingTableViewCell: UITableViewCell {
     static let reuseID = "ImageProcessingTableViewCell"
     
     func configure(processedImage: ProcessedImage) {
-        modificationLabel.text = processedImage.modification.rawValue
+        modificationLabel.text = processedImage.modification
         processedImageView.image = processedImage.image
     }
 }

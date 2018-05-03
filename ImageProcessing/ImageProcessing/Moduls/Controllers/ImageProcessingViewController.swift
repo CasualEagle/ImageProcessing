@@ -7,8 +7,8 @@
 //
 
 import UIKit
-import CoreGraphics
-
+//import CoreGraphics
+import CoreData
 
 class ImageProcessingViewController: UIViewController {
 
@@ -35,10 +35,13 @@ class ImageProcessingViewController: UIViewController {
     private lazy var processButtons = [rotateButton, grayscaleButton, mirrorButton, invertButton, leftMirrorButton]
     var viewModel = ImageProcessingViewModel()
     var networkService = ImageLoader()
+    private var dataSource: TableViewDataSource<ImageProcessingViewController>!
+    private var managedObjectContext: NSManagedObjectContext!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        managedObjectContext = DataController().managedObjectContext
         let nib = UINib(nibName: ImageProcessingTableViewCell.reuseID,
                         bundle: nil)
         tableView.register(nib,
@@ -49,6 +52,22 @@ class ImageProcessingViewController: UIViewController {
         imageView.addGestureRecognizer(gesture)
         setupButtons()
         networkService.imageLoaderDelegate = self
+        setupTableView()
+
+    }
+
+    private func setupTableView() {
+        let request = ProcessedImage.sortedFetchRequest
+        request.fetchBatchSize = 5
+        request.returnsObjectsAsFaults = false
+        let fetchedResultController = NSFetchedResultsController(fetchRequest: request,
+                                                                 managedObjectContext: managedObjectContext,
+                                                                 sectionNameKeyPath: nil,
+                                                                 cacheName: nil)
+        dataSource = TableViewDataSource(tableView: tableView,
+                                         cellIdentifier: ImageProcessingTableViewCell.reuseID,
+                                         fetchedResultsController: fetchedResultController,
+                                         delegate: self)
     }
 
     private func setupButtons() {
@@ -132,6 +151,7 @@ class ImageProcessingViewController: UIViewController {
                                        self,
                                        #selector(image(_:didFinishSavingWithError:contextInfo:)),
                                        nil)
+        
     }
 
     @objc private func image(_ image: UIImage, didFinishSavingWithError error: NSError?, contextInfo: UnsafeRawPointer) {
@@ -183,15 +203,9 @@ extension ImageProcessingViewController: UINavigationControllerDelegate {
 
 }
 
-extension ImageProcessingViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.images.count
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: ImageProcessingTableViewCell.reuseID, for: indexPath) as! ImageProcessingTableViewCell
-        cell.configure(processedImage: viewModel.images[indexPath.row])
-        return cell
+extension ImageProcessingViewController: TableViewDataSourceDelegate {
+    func configure(_ cell: ImageProcessingTableViewCell, for object: ProcessedImage) {
+        cell.configure(processedImage: object)
     }
 }
 
