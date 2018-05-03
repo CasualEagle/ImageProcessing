@@ -9,16 +9,18 @@
 import UIKit
 import CoreData
 
-final class ProcessedImage: NSManagedObject {
+class ProcessedImage: NSManagedObject {
 
     @NSManaged fileprivate(set) var date: Date
     @NSManaged fileprivate(set) var image: UIImage
     @NSManaged fileprivate(set) var modification: String
 
     static func insert(into context: NSManagedObjectContext, image: UIImage, modification: String) {
-        let processedImage = ProcessedImage()
-        processedImage.image = image
+        guard let processedImage = NSEntityDescription.insertNewObject(forEntityName: "ProcessedImage", into: context) as? ProcessedImage else {
+            return
+        }
         processedImage.date = Date()
+        processedImage.image = image
         processedImage.modification = modification
         context.insert(processedImage)
     }
@@ -30,6 +32,6 @@ extension ProcessedImage: Managed {
     }
 
     static var defaultSortDescriptors: [NSSortDescriptor] {
-        return [NSSortDescriptor(key: #keyPath(date), ascending: false)]
+        return [NSSortDescriptor(key: #keyPath(date), ascending: true)]
     }
 }

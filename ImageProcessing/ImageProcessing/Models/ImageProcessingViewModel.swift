@@ -7,12 +7,13 @@
 //
 
 import UIKit
+import CoreData
 
 struct ImageProcessingViewModel {
 
     private(set) var images: [ProcessedImage] = []
 
-    mutating func modifyImage(modification: Modification, image: UIImage?, completion: @escaping (Bool) -> ()) {
+    mutating func modifyImage(modification: Modification, image: UIImage?, context: NSManagedObjectContext, completion: @escaping (Bool) -> ()) {
         guard image != nil else {
             completion(false)
             return
@@ -36,7 +37,7 @@ struct ImageProcessingViewModel {
             return
         }
 
-//        ProcessedImage.insert(into: , image: modifiedImage, modification: modification.rawValue)
+        ProcessedImage.insert(into: context, image: modifiedImage, modification: modification.rawValue)
 //        let processedImage = ProcessedImage(modification: modification.rawValue,
 //                                            image: modifiedImage)
 
@@ -47,5 +48,9 @@ struct ImageProcessingViewModel {
 
     mutating func removeObject(at indexPath: IndexPath) {
         images.remove(at: indexPath.row)
+    }
+
+    func fetchData() {
+        
     }
 }

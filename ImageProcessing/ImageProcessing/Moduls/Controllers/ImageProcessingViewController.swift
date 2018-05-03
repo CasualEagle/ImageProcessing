@@ -24,7 +24,8 @@ class ImageProcessingViewController: UIViewController {
 
     @IBAction private func processImage(_ sender: ProcessingButton) {
         viewModel.modifyImage(modification: sender.modification,
-                              image: imageView.image)
+                              image: imageView.image,
+                              context: managedObjectContext)
         { [weak self] success in
             if success {
                 self?.tableView.reloadData()
