@@ -35,9 +35,9 @@ class ImageProcessingViewController: UIViewController {
                     return
                 }
                 switch mode {
-                case 1:
+                case .insert:
                     self?.tableView.insertRows(at: [IndexPath(row: index, section: 0)], with: .fade)
-                case 2:
+                case .update:
                     self?.tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .fade)
                 default:
                     break

@@ -2,26 +2,29 @@
 //  ImageProcessingViewModel.swift
 //  ImageProcessing
 //
-//  Created by Zstudent on 28/04/2018.
+//  Created by Artem Orlov on 28/04/2018.
 //  Copyright © 2018 ArtemOrlov. All rights reserved.
 //
 
 import UIKit
 
+enum TableViewReloadType: Int {
+    case nothing, insert, update, delete
+}
 class ImageProcessingViewModel {
 
     private(set) var images: [ProcessedImage] = []
 
-    func modifyImage(modification: Modification, image: UIImage?, completion: @escaping (Int?,Int) -> ()) {
+    func modifyImage(modification: Modification, image: UIImage?, completion: @escaping (Int?,TableViewReloadType) -> ()) {
         guard image != nil else {
-            completion(nil, 0)
+            completion(nil, .nothing)
             return
         }
         let processedImage = ProcessedImage(modification: modification, image: UIImage())
         images.append(processedImage)
         let index = images.index(of: processedImage)
         DispatchQueue.main.async {
-            completion(index, 1)
+            completion(index, .insert)
         }
         sleep(5)
         let newImage: UIImage?
@@ -38,14 +41,13 @@ class ImageProcessingViewModel {
             newImage = image?.mirrorLeftPart
         }
         guard let modifiedImage = newImage else {
-            completion(nil, 0)
+            completion(nil, .nothing)
             return
         }
         processedImage.image = modifiedImage
-        print(processedImage)
         let finalIndex = images.index(of: processedImage)
         DispatchQueue.main.async {
-            completion(finalIndex, 2)
+            completion(finalIndex, .update)
         }
     }
 

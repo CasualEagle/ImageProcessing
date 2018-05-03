@@ -2,7 +2,7 @@
 //  ImageProcessingTableViewCell.swift
 //  ImageProcessing
 //
-//  Created by Zstudent on 28/04/2018.
+//  Created by Artem Orlov on 28/04/2018.
 //  Copyright © 2018 ArtemOrlov. All rights reserved.
 //
 

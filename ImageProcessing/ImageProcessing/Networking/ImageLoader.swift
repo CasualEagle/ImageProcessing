@@ -43,6 +43,5 @@ extension ImageLoader: URLSessionDownloadDelegate {
         DispatchQueue.main.async { [weak self] in
             self?.imageLoaderDelegate?.showProgress(progress)
         }
-        print(progress)
     }
 }
