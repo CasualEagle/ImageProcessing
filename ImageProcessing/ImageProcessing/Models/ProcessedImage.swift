@@ -12,15 +12,22 @@ import CoreData
 class ProcessedImage: NSManagedObject {
 
     @NSManaged fileprivate(set) var date: Date
-    @NSManaged fileprivate(set) var image: UIImage
+    @NSManaged fileprivate(set) var image: Data
+    @NSManaged fileprivate(set) var thumbnail: Data
     @NSManaged fileprivate(set) var modification: String
 
     static func insert(into context: NSManagedObjectContext, image: UIImage, modification: String) {
         guard let processedImage = NSEntityDescription.insertNewObject(forEntityName: "ProcessedImage", into: context) as? ProcessedImage else {
             return
         }
+
+        guard let imageData = UIImagePNGRepresentation(image),
+        let thumbnail = UIImageJPEGRepresentation(image, 0.2) else {
+            return
+        }
+        processedImage.image = imageData
+        processedImage.thumbnail = thumbnail
         processedImage.date = Date()
-        processedImage.image = image
         processedImage.modification = modification
         context.insert(processedImage)
     }
@@ -32,6 +39,12 @@ extension ProcessedImage: Managed {
     }
 
     static var defaultSortDescriptors: [NSSortDescriptor] {
-        return [NSSortDescriptor(key: #keyPath(date), ascending: true)]
+        return [NSSortDescriptor(key: #keyPath(date), ascending: false)]
+    }
+}
+
+extension ProcessedImage {
+    var imageFromData: UIImage? {
+        return UIImage(data: thumbnail)
     }
 }

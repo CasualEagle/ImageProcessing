@@ -26,11 +26,6 @@ class ImageProcessingViewController: UIViewController {
         viewModel.modifyImage(modification: sender.modification,
                               image: imageView.image,
                               context: managedObjectContext)
-        { [weak self] success in
-            if success {
-                self?.tableView.reloadData()
-            }
-        }
     }
 
     private lazy var processButtons = [rotateButton, grayscaleButton, mirrorButton, invertButton, leftMirrorButton]
@@ -43,23 +38,23 @@ class ImageProcessingViewController: UIViewController {
         super.viewDidLoad()
 
         managedObjectContext = DataController().managedObjectContext
-        let nib = UINib(nibName: ImageProcessingTableViewCell.reuseID,
-                        bundle: nil)
-        tableView.register(nib,
-                           forCellReuseIdentifier: ImageProcessingTableViewCell.reuseID)
-
         imageView.isUserInteractionEnabled = true
         let gesture = UITapGestureRecognizer(target: self, action: #selector(chooseImage))
         imageView.addGestureRecognizer(gesture)
         setupButtons()
         networkService.imageLoaderDelegate = self
         setupTableView()
-
     }
 
     private func setupTableView() {
+
+        let nib = UINib(nibName: ImageProcessingTableViewCell.reuseID,
+                        bundle: nil)
+        tableView.register(nib,
+                           forCellReuseIdentifier: ImageProcessingTableViewCell.reuseID)
+
         let request = ProcessedImage.sortedFetchRequest
-        request.fetchBatchSize = 5
+        request.fetchBatchSize = 15
         request.returnsObjectsAsFaults = false
         let fetchedResultController = NSFetchedResultsController(fetchRequest: request,
                                                                  managedObjectContext: managedObjectContext,
@@ -147,7 +142,10 @@ class ImageProcessingViewController: UIViewController {
     }
 
     private func savePhotoToLibrary(at indexPath: IndexPath) {
-        let image = viewModel.images[indexPath.row].image
+        let imageData = viewModel.images[indexPath.row].image
+        guard let image = UIImage(data: imageData) else {
+            return
+        }
         UIImageWriteToSavedPhotosAlbum(image,
                                        self,
                                        #selector(image(_:didFinishSavingWithError:contextInfo:)),
@@ -221,7 +219,8 @@ extension ImageProcessingViewController: UITableViewDelegate {
                 self?.viewModel.removeObject(at: indexPath)
                 tableView.reloadData()
             case .useAsPrimary:
-                self?.imageView.image = self?.viewModel.images[indexPath.row].image
+                print("primal")
+                
             default:
                 break
             }

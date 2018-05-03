@@ -13,44 +13,36 @@ struct ImageProcessingViewModel {
 
     private(set) var images: [ProcessedImage] = []
 
-    mutating func modifyImage(modification: Modification, image: UIImage?, context: NSManagedObjectContext, completion: @escaping (Bool) -> ()) {
+    func modifyImage(modification: Modification, image: UIImage?, context: NSManagedObjectContext) {
         guard image != nil else {
-            completion(false)
             return
         }
-        let newImage: UIImage?
+        DispatchQueue.global().async {
+            let newImage: UIImage?
 
-        switch modification {
-        case .grayscale:
-            newImage = image?.grayscale
-        case .mirror:
-            newImage = image?.mirror
-        case .rotate:
-            newImage = image?.imageRotatedByDegrees(degrees: 90)
-        case .invert:
-            newImage = image?.invert
-        case .leftSideMirror:
-            newImage = image?.mirrorLeftPart
-        }
-        guard let modifiedImage = newImage else {
-            completion(false)
-            return
-        }
+            switch modification {
+            case .grayscale:
+                newImage = image?.grayscale
+            case .mirror:
+                newImage = image?.mirror
+            case .rotate:
+                newImage = image?.imageRotatedByDegrees(degrees: 90)
+            case .invert:
+                newImage = image?.invert
+            case .leftSideMirror:
+                newImage = image?.mirrorLeftPart
+            }
+            guard let modifiedImage = newImage else {
+                return
+            }
 
-        ProcessedImage.insert(into: context, image: modifiedImage, modification: modification.rawValue)
-//        let processedImage = ProcessedImage(modification: modification.rawValue,
-//                                            image: modifiedImage)
-
-        DispatchQueue.main.async {
-            completion(true)
+            context.performChanges {
+                ProcessedImage.insert(into: context, image: modifiedImage, modification: modification.rawValue)
+            }
         }
     }
 
     mutating func removeObject(at indexPath: IndexPath) {
         images.remove(at: indexPath.row)
-    }
-
-    func fetchData() {
-        
     }
 }
