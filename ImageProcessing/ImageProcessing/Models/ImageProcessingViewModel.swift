@@ -8,12 +8,16 @@
 
 import UIKit
 
+protocol UpdateFilteringCell: class {
+    func updateCell(at index: Int, progress: Float)
+}
 enum TableViewReloadType: Int {
     case nothing, insert, update, delete
 }
 class ImageProcessingViewModel {
 
     private(set) var images: [ProcessedImage] = []
+    weak var delegate: UpdateFilteringCell!
 
     func modifyImage(modification: Modification, image: UIImage?, completion: @escaping (Int?,TableViewReloadType) -> ()) {
         guard image != nil else {
@@ -22,11 +26,14 @@ class ImageProcessingViewModel {
         }
         let processedImage = ProcessedImage(modification: modification, image: UIImage())
         images.append(processedImage)
-        let index = images.index(of: processedImage)
+        guard let index = images.index(of: processedImage) else {
+            completion(nil, .nothing)
+            return
+        }
         DispatchQueue.main.async {
             completion(index, .insert)
         }
-        sleep(5)
+
         let newImage: UIImage?
         switch modification {
         case .grayscale:
@@ -44,8 +51,20 @@ class ImageProcessingViewModel {
             completion(nil, .nothing)
             return
         }
+        let seconds = arc4random_uniform(26) + 5
+        for second in 1...seconds {
+            print("--------------\(second)")
+            DispatchQueue.main.async {
+                print("ispatch main")
+                self.delegate.updateCell(at: index, progress: Float(second) / Float(seconds))
+            }
+            sleep(second)
+        }
         processedImage.image = modifiedImage
-        let finalIndex = images.index(of: processedImage)
+        guard let finalIndex = images.index(of: processedImage) else {
+            return
+        }
+        processedImage.isFiltering = false
         DispatchQueue.main.async {
             completion(finalIndex, .update)
         }

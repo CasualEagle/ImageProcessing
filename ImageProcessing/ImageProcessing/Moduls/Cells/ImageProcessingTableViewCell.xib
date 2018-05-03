@@ -45,21 +45,39 @@
                             <constraint firstAttribute="width" secondItem="vWu-31-nAl" secondAttribute="height" multiplier="1:1" id="RtZ-tb-Xwd"/>
                         </constraints>
                     </imageView>
+                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IWf-pa-8bo">
+                        <rect key="frame" x="80" y="155" width="160" height="2"/>
+                    </progressView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iJi-qZ-Fdj">
+                        <rect key="frame" x="80" y="122.5" width="160" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="iJi-qZ-Fdj" firstAttribute="leading" secondItem="vWu-31-nAl" secondAttribute="leading" id="2Fe-Gt-4sn"/>
                     <constraint firstItem="rf2-rx-0Ge" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="4" id="ASx-k8-Vv6"/>
                     <constraint firstAttribute="bottomMargin" secondItem="vWu-31-nAl" secondAttribute="bottom" constant="4" id="Bfg-sl-y7r"/>
+                    <constraint firstItem="IWf-pa-8bo" firstAttribute="width" secondItem="iJi-qZ-Fdj" secondAttribute="width" id="DF9-jm-awm"/>
                     <constraint firstItem="vWu-31-nAl" firstAttribute="top" secondItem="rf2-rx-0Ge" secondAttribute="bottom" constant="4" id="HpG-1L-hHy"/>
                     <constraint firstItem="vWu-31-nAl" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.5" id="P2d-Hb-d0s"/>
+                    <constraint firstItem="iJi-qZ-Fdj" firstAttribute="trailing" secondItem="vWu-31-nAl" secondAttribute="trailing" id="Svr-eo-NZD"/>
                     <constraint firstItem="rf2-rx-0Ge" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="8" id="cYW-6n-ZWh"/>
                     <constraint firstItem="vWu-31-nAl" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="cbq-ep-kCV"/>
+                    <constraint firstItem="iJi-qZ-Fdj" firstAttribute="centerY" secondItem="vWu-31-nAl" secondAttribute="centerY" id="dfv-kt-uLZ"/>
                     <constraint firstAttribute="trailingMargin" secondItem="rf2-rx-0Ge" secondAttribute="trailing" constant="8" id="feB-gb-hxK"/>
+                    <constraint firstItem="iJi-qZ-Fdj" firstAttribute="centerX" secondItem="vWu-31-nAl" secondAttribute="centerX" id="kTX-c0-J5G"/>
+                    <constraint firstItem="IWf-pa-8bo" firstAttribute="centerX" secondItem="vWu-31-nAl" secondAttribute="centerX" id="vQK-ji-s7j"/>
+                    <constraint firstItem="IWf-pa-8bo" firstAttribute="top" secondItem="iJi-qZ-Fdj" secondAttribute="bottom" constant="12" id="xXi-rp-fd4"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="modificationLabel" destination="eru-x0-ta4" id="kVP-N7-Psu"/>
                 <outlet property="processedImageView" destination="vWu-31-nAl" id="ZTt-WG-Bxt"/>
+                <outlet property="progressLabel" destination="iJi-qZ-Fdj" id="g7T-ud-43p"/>
+                <outlet property="progressView" destination="IWf-pa-8bo" id="g1v-mc-FdA"/>
             </connections>
             <point key="canvasLocation" x="34" y="69.5"/>
         </tableViewCell>

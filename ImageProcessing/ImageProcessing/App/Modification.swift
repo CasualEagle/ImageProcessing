@@ -8,6 +8,7 @@
 
 import Foundation
 
+
 enum Modification: String {
     case rotate = "Rotate"
     case grayscale = "Grayscale"

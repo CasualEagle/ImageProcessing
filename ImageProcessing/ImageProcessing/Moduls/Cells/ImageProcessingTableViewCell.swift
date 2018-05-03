@@ -12,11 +12,22 @@ class ImageProcessingTableViewCell: UITableViewCell {
 
     @IBOutlet weak var modificationLabel: UILabel!
     @IBOutlet weak var processedImageView: UIImageView!
+    @IBOutlet weak var progressLabel: UILabel!
+    @IBOutlet weak var progressView: UIProgressView!
 
     static let reuseID = "ImageProcessingTableViewCell"
     
     func configure(processedImage: ProcessedImage) {
         modificationLabel.text = processedImage.modification.rawValue
         processedImageView.image = processedImage.image
+
+        progressView.isHidden = !processedImage.isFiltering
+        progressLabel.isHidden = !processedImage.isFiltering
     }
+
+    func showProgress(_ progress: Float) {
+        progressView.progress = progress
+        progressLabel.text = "\(Int(progress * 100))" + "%"
+    }
+    
 }

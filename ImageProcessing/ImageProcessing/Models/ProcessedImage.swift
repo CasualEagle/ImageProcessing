@@ -11,9 +11,12 @@ import UIKit
 class ProcessedImage: NSObject {
     let modification: Modification
     var image: UIImage
+    let date: Date
+    var isFiltering = true
 
     init(modification: Modification, image: UIImage) {
         self.modification = modification
         self.image = image
+        date = Date()
     }
 }

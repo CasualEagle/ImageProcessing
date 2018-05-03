@@ -26,11 +26,11 @@ class ImageProcessingViewController: UIViewController {
         guard let image = imageView.image else {
             return
         }
-        DispatchQueue.global().async {
+        DispatchQueue.global(qos: .userInteractive).async {
             self.viewModel.modifyImage(modification: sender.modification,
-                                  image: image)
+                                       image: image)
             { [weak self] index, mode in
-
+                
                 guard let index = index else {
                     return
                 }
@@ -42,9 +42,7 @@ class ImageProcessingViewController: UIViewController {
                 default:
                     break
                 }
-
             }
-
         }
     }
 
@@ -65,6 +63,7 @@ class ImageProcessingViewController: UIViewController {
         imageView.addGestureRecognizer(gesture)
         setupButtons()
         networkService.imageLoaderDelegate = self
+        viewModel.delegate = self
     }
 
     private func setupButtons() {
@@ -239,4 +238,17 @@ extension ImageProcessingViewController: ImageLoaderDelegate {
     func updateImage(_ image: UIImage) {
         setNewImage(image)
     }
+}
+
+extension ImageProcessingViewController: UpdateFilteringCell {
+
+    func updateCell(at index: Int, progress: Float) {
+        print(index, progress)
+        guard let cell = tableView.cellForRow(at: IndexPath(row: index, section: 0)) as? ImageProcessingTableViewCell else {
+            return
+        }
+        cell.showProgress(progress)
+    }
+
+
 }
