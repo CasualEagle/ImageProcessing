@@ -42,6 +42,6 @@ extension UIViewController {
             }
             alertController.addAction(action)
         }
-        self.present(alertController, animated: true, completion: nil)
+        self.present(alertController, animated: true)
     }
 }

@@ -31,10 +31,10 @@ class ImageProcessingViewController: UIViewController {
         guard let image = initialImageView.image else {
             return
         }
-        DispatchQueue.global(qos: .userInteractive).async {
-            self.viewModel.modifyImage(modification: sender.modification,
+        DispatchQueue.global(qos: .userInteractive).async { [weak self] in
+            self?.viewModel.modifyImage(modification: sender.modification,
                                        image: image)
-            { [weak self] index, mode in
+            { index, mode in
                 
                 guard let index = index else {
                     return

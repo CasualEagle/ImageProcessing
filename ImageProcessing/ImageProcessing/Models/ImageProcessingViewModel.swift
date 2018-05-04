@@ -55,8 +55,8 @@ class ImageProcessingViewModel {
         }
         let seconds = arc4random_uniform(260) + 50
         for second in 1...seconds {
-            DispatchQueue.main.async {
-                self.delegate.updateCell(at: index, progress: Float(second) / Float(seconds))
+            DispatchQueue.main.async { [weak self] in
+                self?.delegate.updateCell(at: index, progress: Float(second) / Float(seconds))
             }
             usleep(100000)
         }
