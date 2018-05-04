@@ -11,20 +11,6 @@ import UIKit
 
 typealias ExifDictionary = [CFString: Any]
 class ExifService {
-    func changeCameraToApp(for image: UIImage?) {
-        guard let image = image else {
-            return
-        }
-//        guard let jpeg = UIImageJPEGRepresentation(image, 1.0) else {
-//            return
-//        }
-
-        guard var exifDictionary = getExifData(from: image) else {
-            return
-        }
-        exifDictionary[kCGImagePropertyExifCameraOwnerName] = "ImageProcessing App"
-        
-    }
 
     func getExifData(from image: UIImage?) -> ExifDictionary? {
         guard let image = image else {
@@ -45,7 +31,6 @@ class ExifService {
         guard let exifDictionary = imageProperties[kCGImagePropertyExifDictionary] as? ExifDictionary else {
             return nil
         }
-        print(exifDictionary)
         return exifDictionary
     }
 }

@@ -26,6 +26,7 @@ class ImageLoader: NSObject {
     }
 }
 
+    // MARK: URLSessionDownloadDelegate
 
 extension ImageLoader: URLSessionDownloadDelegate {
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {

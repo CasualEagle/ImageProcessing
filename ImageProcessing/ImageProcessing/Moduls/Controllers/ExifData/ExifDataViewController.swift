@@ -11,9 +11,13 @@ import UIKit
 class ExifDataViewController: UIViewController {
 
     @IBOutlet private weak var tableView: UITableView!
+
     var exifDictionary: ExifDictionary = [:]
 
     private let cellID = "cellID"
+
+    // MARK: ViewController life cycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -22,6 +26,8 @@ class ExifDataViewController: UIViewController {
         tableView.tableFooterView = UIView(frame: .zero)
     }
 }
+
+    // MARK: UITableViewDataSource
 
 extension ExifDataViewController: UITableViewDataSource {
 

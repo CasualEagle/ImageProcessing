@@ -11,9 +11,11 @@ import UIKit
 protocol UpdateFilteringCell: class {
     func updateCell(at index: Int, progress: Float)
 }
+
 enum TableViewReloadType: Int {
     case nothing, insert, update, delete
 }
+
 class ImageProcessingViewModel {
 
     private(set) var images: [ProcessedImage] = []
@@ -53,12 +55,10 @@ class ImageProcessingViewModel {
         }
         let seconds = arc4random_uniform(26) + 5
         for second in 1...seconds {
-            print("--------------\(second)")
             DispatchQueue.main.async {
-                print("ispatch main")
                 self.delegate.updateCell(at: index, progress: Float(second) / Float(seconds))
             }
-            sleep(second)
+            sleep(1)
         }
         processedImage.image = modifiedImage
         guard let finalIndex = images.index(of: processedImage) else {

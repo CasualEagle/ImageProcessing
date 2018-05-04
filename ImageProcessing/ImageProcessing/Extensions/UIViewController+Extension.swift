@@ -8,6 +8,16 @@
 
 import UIKit
 
+enum AlertOption: String {
+    case cancel = "Cancel"
+    case photoLibrary = "Photo Library"
+    case camera = "Camera"
+    case download = "Download"
+    case delete = "Delete"
+    case save = "Save"
+    case useAsPrimary = "Use as primary image"
+}
+
 extension UIViewController {
 
     func presentActionSheet(title: String?, message: String?, options: AlertOption..., completion: @escaping (AlertOption) -> Void) {

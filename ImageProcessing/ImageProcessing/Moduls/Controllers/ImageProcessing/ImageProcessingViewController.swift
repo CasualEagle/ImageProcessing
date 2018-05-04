@@ -12,8 +12,10 @@ import CoreGraphics
 
 class ImageProcessingViewController: UIViewController {
 
+    // MARK: IBOutlets
+
     @IBOutlet private weak var chooseImageLabel: UILabel!
-    @IBOutlet private weak var imageView: UIImageView!
+    @IBOutlet private weak var initialImageView: UIImageView!
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var progressView: UIProgressView!
     @IBOutlet private weak var rotateButton: ProcessingButton!
@@ -23,8 +25,10 @@ class ImageProcessingViewController: UIViewController {
     @IBOutlet private weak var leftMirrorButton: ProcessingButton!
     @IBOutlet private weak var exifButton: UIButton!
 
+    // MARK: IBActions
+
     @IBAction private func processImage(_ sender: ProcessingButton) {
-        guard let image = imageView.image else {
+        guard let image = initialImageView.image else {
             return
         }
         DispatchQueue.global(qos: .userInteractive).async {
@@ -39,7 +43,7 @@ class ImageProcessingViewController: UIViewController {
                 case .insert:
                     self?.tableView.insertRows(at: [IndexPath(row: index, section: 0)], with: .fade)
                 case .update:
-                    self?.tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .fade)
+                    self?.tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .none)
                 default:
                     break
                 }
@@ -47,18 +51,23 @@ class ImageProcessingViewController: UIViewController {
         }
     }
     @IBAction func showEXIF(_ sender: UIButton) {
-        let exifVC = ExifDataViewController(nibName: "ExifDataViewController", bundle: nil)
-        guard let exifDictionary = exifService.getExifData(from: imageView.image) else {
+        let exifVC = ExifDataViewController(nibName: Constants.Controller.exifData,
+                                            bundle: nil)
+        guard let exifDictionary = exifService.getExifData(from: initialImageView.image) else {
             return
         }
         exifVC.exifDictionary = exifDictionary
         navigationController?.pushViewController(exifVC, animated: true)
     }
 
+    // MARK: Properties
+
     private lazy var processButtons = [rotateButton, grayscaleButton, mirrorButton, invertButton, leftMirrorButton]
     var viewModel = ImageProcessingViewModel()
     var networkService = ImageLoader()
     var exifService = ExifService()
+
+    // MARK: ViewController life cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,11 +79,13 @@ class ImageProcessingViewController: UIViewController {
                            forCellReuseIdentifier: ImageProcessingTableViewCell.reuseID)
 
         let gesture = UITapGestureRecognizer(target: self, action: #selector(chooseImage))
-        imageView.addGestureRecognizer(gesture)
+        initialImageView.addGestureRecognizer(gesture)
         setupButtons()
         networkService.imageLoaderDelegate = self
         viewModel.delegate = self
     }
+
+    // MARK: Methods
 
     private func setupButtons() {
         grayscaleButton.modification = .grayscale
@@ -114,19 +125,19 @@ class ImageProcessingViewController: UIViewController {
     }
 
     private func showDownloadAlert() {
-        let downloadAlert = UIAlertController(title: "Type download link",
+        let downloadAlert = UIAlertController(title: Constants.Message.typeLink,
                                               message: nil,
                                               preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: Constants.Button.cancel,
                                    style: .cancel)
-        let downloadAction = UIAlertAction(title: "Download",
+        let downloadAction = UIAlertAction(title: Constants.Message.download,
                                            style: .default)
         { _ in
             let string = downloadAlert.textFields?.first?.text
             self.downloadImage(string)
         }
         downloadAlert.addTextField { textField in
-            textField.placeholder = "Enter link here"
+            textField.placeholder = Constants.PlaceHolder.enterLink
         }
         downloadAlert.addAction(cancelAction)
         downloadAlert.addAction(downloadAction)
@@ -136,8 +147,8 @@ class ImageProcessingViewController: UIViewController {
     private func downloadImage(_ string: String?) {
         guard let string = string,
             let url = URL(string: string) else {
-                let alert = UIAlertController(title: "Error",
-                                              message: "Wrong url",
+                let alert = UIAlertController(title: Constants.Message.error,
+                                              message: Constants.Message.wrongUrl,
                                               preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: Constants.Button.ok,
                                               style: .default))
@@ -147,14 +158,13 @@ class ImageProcessingViewController: UIViewController {
         progressView.isHidden = false
         chooseImageLabel.isHidden = false
         exifButton.isHidden = true
-        imageView.image = nil
+        initialImageView.image = nil
         changeButtonsEnableMode(to: false)
         networkService.downloadImage(from: url)
     }
 
     private func savePhotoToLibrary(at indexPath: IndexPath) {
         let image = viewModel.images[indexPath.row].image
-        exifService.changeCameraToApp(for: image)
         UIImageWriteToSavedPhotosAlbum(image,
                                        self,
                                        #selector(image(_:didFinishSavingWithError:contextInfo:)),
@@ -180,7 +190,7 @@ class ImageProcessingViewController: UIViewController {
     }
 
     private func setNewImage(_ image: UIImage) {
-        imageView.image = image
+        initialImageView.image = image
         chooseImageLabel.isHidden = true
         progressView.isHidden = true
         exifButton.isHidden = false
@@ -194,6 +204,8 @@ class ImageProcessingViewController: UIViewController {
         }
     }
 }
+
+    // MARK: UIImagePickerControllerDelegate
 
 extension ImageProcessingViewController: UIImagePickerControllerDelegate {
 
@@ -211,6 +223,8 @@ extension ImageProcessingViewController: UINavigationControllerDelegate {
 
 }
 
+    // MARK: UITableViewDataSource
+
 extension ImageProcessingViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.images.count
@@ -223,6 +237,8 @@ extension ImageProcessingViewController: UITableViewDataSource {
     }
 }
 
+    // MARK: UITableViewDelegate
+
 extension ImageProcessingViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
@@ -234,14 +250,14 @@ extension ImageProcessingViewController: UITableViewDelegate {
                 self?.viewModel.removeObject(at: indexPath)
                 tableView.deleteRows(at: [indexPath], with: .fade)
             case .useAsPrimary:
-                self?.imageView.image = self?.viewModel.images[indexPath.row].image
+                self?.initialImageView.image = self?.viewModel.images[indexPath.row].image
             default:
                 break
             }
         }
     }
 }
-
+    // MARK: ImageLoaderDelegate
 extension ImageProcessingViewController: ImageLoaderDelegate {
     func showProgress(_ progress: Float) {
         chooseImageLabel.text = "\(Int(progress * 100))%"
@@ -253,6 +269,8 @@ extension ImageProcessingViewController: ImageLoaderDelegate {
     }
 }
 
+    // MARK: UpdateFilteringCell
+
 extension ImageProcessingViewController: UpdateFilteringCell {
 
     func updateCell(at index: Int, progress: Float) {
@@ -262,6 +280,4 @@ extension ImageProcessingViewController: UpdateFilteringCell {
         }
         cell.showProgress(progress)
     }
-
-
 }
