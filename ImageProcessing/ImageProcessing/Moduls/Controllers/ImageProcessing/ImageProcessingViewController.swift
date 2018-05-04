@@ -63,9 +63,9 @@ class ImageProcessingViewController: UIViewController {
     // MARK: Properties
 
     private lazy var processButtons = [rotateButton, grayscaleButton, mirrorButton, invertButton, leftMirrorButton]
-    var viewModel = ImageProcessingViewModel()
-    var networkService = ImageLoader()
-    var exifService = ExifService()
+    private var viewModel = ImageProcessingViewModel()
+    private var networkService = ImageLoader()
+    private var exifService = ExifService()
 
     // MARK: ViewController life cycle
 
@@ -73,19 +73,23 @@ class ImageProcessingViewController: UIViewController {
         super.viewDidLoad()
 
         title = Constants.Title.imageProcessing.rawValue
-        let nib = UINib(nibName: ImageProcessingTableViewCell.reuseID,
-                        bundle: nil)
-        tableView.register(nib,
-                           forCellReuseIdentifier: ImageProcessingTableViewCell.reuseID)
-
         let gesture = UITapGestureRecognizer(target: self, action: #selector(chooseImage))
         initialImageView.addGestureRecognizer(gesture)
         setupButtons()
+        setupTableView()
         networkService.imageLoaderDelegate = self
         viewModel.delegate = self
     }
 
     // MARK: Methods
+
+    private func setupTableView() {
+        let nib = UINib(nibName: ImageProcessingTableViewCell.reuseID,
+                        bundle: nil)
+        tableView.register(nib,
+                           forCellReuseIdentifier: ImageProcessingTableViewCell.reuseID)
+        tableView.tableFooterView = UIView(frame: .zero)
+    }
 
     private func setupButtons() {
         grayscaleButton.modification = .grayscale
@@ -274,7 +278,6 @@ extension ImageProcessingViewController: ImageLoaderDelegate {
 extension ImageProcessingViewController: UpdateFilteringCell {
 
     func updateCell(at index: Int, progress: Float) {
-        print(index, progress)
         guard let cell = tableView.cellForRow(at: IndexPath(row: index, section: 0)) as? ImageProcessingTableViewCell else {
             return
         }

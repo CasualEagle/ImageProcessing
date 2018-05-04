@@ -53,12 +53,12 @@ class ImageProcessingViewModel {
             completion(nil, .nothing)
             return
         }
-        let seconds = arc4random_uniform(26) + 5
+        let seconds = arc4random_uniform(260) + 50
         for second in 1...seconds {
             DispatchQueue.main.async {
                 self.delegate.updateCell(at: index, progress: Float(second) / Float(seconds))
             }
-            sleep(1)
+            usleep(100000)
         }
         processedImage.image = modifiedImage
         guard let finalIndex = images.index(of: processedImage) else {
